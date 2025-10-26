@@ -94,7 +94,7 @@ function ScrollAniContent () {
             const scrollEnd = scrollStart + Math.abs(stickyRect.top-stickyRect.bottom) + offsetEnd;
 
             // progress 계산
-            let progress = (currentScroll - scrollStart) / (scrollEnd - scrollStart)*2;
+            let progress = (currentScroll - scrollStart) / (scrollEnd - scrollStart)*1.5;
             progress = Math.max(0, Math.min(1, progress)); // 0~1 clamp
 
             // 배경색: #F3F2EC → #ac2a03
@@ -122,9 +122,15 @@ function ScrollAniContent () {
 
 }
 
+//Sticky 요소 정렬
 
+{
+    const stickyArticle = document.querySelector(".lastwords");
+    const ArticleHeight = stickyArticle.offsetHeight;
+    stickyArticle.style.paddingTop = `${window.innerHeight-(ArticleHeight/2)}`
+
+}
 //Sticky 효과 주기
-
 {
             
 
@@ -230,6 +236,8 @@ function StickyPosDesc ()
     UnderLayout.style.top = `${window.innerHeight*0.9+stickyButton.offsetHeight}px`
     serviceLayout.style.top = `${window.innerHeight*0.9+stickyButton.offsetHeight}px`
 }
+
+
 
  
 

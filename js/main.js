@@ -143,16 +143,14 @@ function ScrollAniContent () {
             
                     
                 if(stickyRect.top>0){
-                    lastWords.style.top = `0px`
+                    lastWords.classList.remove("sticky")
                 }
 
-                else if (stickyRect.top<=0 && stickyRect.bottom>0){
-                    lastWords.style.top = `${-stickyRect.top}px`
+                else {
+                    lastWords.classList.add("sticky")
                     
                 }
-                else if (stickyRect.bottom<=0) {
-                    lastWords.style.top = `${-(window.scrollY+stickyRect.bottom)}px`
-                    }
+                
                 
                 
             });

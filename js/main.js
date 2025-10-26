@@ -138,20 +138,24 @@ function ScrollAniContent () {
                 const stickyStart = document.querySelector(".lastwords-container");
                 const lastWords = document.querySelector(".lastwords");
                 const stickyRect = stickyStart.getBoundingClientRect();
-                console.log(stickyRect.bottom)
 
+ 
+            
+                    
+                if(stickyRect.top>0){
+                    lastWords.style.transform = `translate3d(0,0,0)`
+
+                    console.log("실행");
+                }
+
+                else if (stickyRect.top<=0 && stickyRect.bottom>0){
+                    lastWords.style.transform = `translate3d(0,${-stickyRect.top}px,0)`
+                    console.log("실행2")
+                }
+                else if (stickyRect.bottom<=0) {
+                    lastWords.style.transform = `translate3d(0,${-(window.scrollY+stickyRect.bottom)}px,0)`
+                    }
                 
-                if (stickyRect.top>0){
-                    lastWords.style.top =`0px`
-                }
-                if (stickyRect.top <= 0 && stickyRect.bottom>0) {
-                    lastWords.style.top = `${Math.abs(stickyRect.top)}px`
-                }
-                else if (stickyRect.bottom <= 0) {
-                    lastWords.style.top = `${window.scrollY+stickyRect.bottom}px`
-
-                    console.log("지났어")
-                }
                 
             });
 

@@ -1,0 +1,785 @@
+document.addEventListener("DOMContentLoaded", function() {
+  document.body.classList.add("loaded");
+});
+
+
+const fixViewportHeight = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--fixed-vh', `${vh}px`);
+    };
+
+    // 최초 1회만 계산
+    fixViewportHeight();
+
+    // 만약 방향 전환(가로/세로) 시만 다시 계산하고 싶다면:
+    window.addEventListener('orientationchange', fixViewportHeight);
+
+
+{
+    //타이틀 애니메이션
+    const titleAni = document.querySelectorAll('.char');
+    titleAni.forEach(char => {
+        char.addEventListener('mouseenter', () => {
+        char.classList.remove('animate');
+        void char.offsetWidth;
+    char.classList.add('animate');
+    });
+});
+}
+
+
+function ScrollAniContent () {
+
+    const currentScrollY = window.pageYOffset;
+    const currentWindowHeight = window.innerHeight;
+    const titleContainer = document.getElementById("numsil-animation")
+    const titlechar = document.querySelectorAll(".Mix_T");
+    const ContainerRect = titleContainer.getBoundingClientRect()
+    
+    /* console.log(ContainerRect.top-currentWindowHeight)
+    console.log(ContainerRect.bottom) */
+    
+    
+    if (ContainerRect.top<currentWindowHeight&&ContainerRect.bottom>0) {
+        for(i=0;i<titlechar.length;i++) {
+            titlechar[i].classList.add(`ani${i}`)
+
+            //console.log("애니메이션 재생")
+        }
+    } else if(ContainerRect.top<currentWindowHeight&&ContainerRect.bottom<=0) {
+        for(i=0;i<titlechar.length;i++) {
+            titlechar[i].classList.remove(`ani${i}`)
+            //console.log("애니메이션 꺼짐")
+        }
+    }
+    else if (ContainerRect.top>currentWindowHeight) {
+        for(i=0;i<titlechar.length;i++) {
+            titlechar[i].classList.remove(`ani${i}`)
+
+            //console.log("애니메이션 꺼짐")
+        }
+    }
+    else if (ContainerRect.top<currentWindowHeight) {
+        for(i=0;i<titlechar.length;i++) {
+            titlechar[i].classList.add(`ani${i}`)
+
+            //console.log("애니메이션 재생")
+        }
+    }
+}
+
+{
+        const stickyStart = document.querySelector(".stickyscroll");
+        const lastWords = document.querySelector('.lastwords');
+        const stickyCover = document.querySelector('.stickycover');
+
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const stickyRect = stickyStart.getBoundingClientRect();
+            const coverRect = stickyCover.getBoundingClientRect();
+            const currentScroll = window.pageYOffset;
+
+            // 여유 구간(offset)
+            const offsetStart = 0;
+            const offsetEnd = -windowHeight*0.5;
+
+            // 색상 변화 시작과 종료 scroll 값
+            const scrollStart = currentScroll + stickyRect.top + offsetStart;
+            const scrollEnd = currentScroll + coverRect.top - windowHeight + offsetEnd;
+
+            // progress 계산
+            let progress = (currentScroll - scrollStart) / (scrollEnd - scrollStart);
+            progress = Math.max(0, Math.min(1, progress)); // 0~1 clamp
+
+            // 배경색: #F3F2EC → #ac2a03
+            const startBg = { r: 243, g: 242, b: 236 };
+            const endBg = { r: 0, g: 0, b: 0 };
+            const currentBg = {
+                r: Math.round(startBg.r + (endBg.r - startBg.r) * progress),
+                g: Math.round(startBg.g + (endBg.g - startBg.g) * progress),
+                b: Math.round(startBg.b + (endBg.b - startBg.b) * progress),
+            };
+
+            // 텍스트 색: #000000 → #F3F2EC
+            const startText = { r: 0, g: 0, b: 0 };
+            const endText = { r: 243, g: 242, b: 236 };
+            const currentText = {
+                r: Math.round(startText.r + (endText.r - startText.r) * progress),
+                g: Math.round(startText.g + (endText.g - startText.g) * progress),
+                b: Math.round(startText.b + (endText.b - startText.b) * progress),
+            };
+
+            // 적용
+            lastWords.style.backgroundColor = `rgb(${currentBg.r}, ${currentBg.g}, ${currentBg.b})`;
+            lastWords.style.color = `rgb(${currentText.r}, ${currentText.g}, ${currentText.b})`;
+});
+
+}
+
+
+//Sticky 효과 주기
+
+{
+            const stickyStart = document.querySelector(".stickyscroll");
+            const lastWords = document.querySelector(".lastwords");
+
+            window.addEventListener("scroll", () => {
+                const stickyRect = stickyStart.getBoundingClientRect();
+                const lasWordsRect = lastWords.getBoundingClientRect();
+
+                if (stickyRect.top <= 0) {
+                    lastWords.classList.add("sticky")
+                }
+                
+                
+            });
+
+}
+
+
+
+
+//간단 스크롤시 요소들 페이드인 페이드아웃
+{
+    const ScrollFades = document.querySelectorAll(".discocontent, .mainarticle ")
+    const titlechar = document.querySelectorAll(".Mix_T");
+
+
+
+    const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+    // 요소의 상단이 뷰포트 하단에 닿을 때
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+            else {
+                 entry.target.classList.remove('visible');
+            }
+        });
+        }, {
+        root: null,
+        rootMargin: "0px 0px -15% 0px", // 하단을 기준으로
+        threshold: 0
+        });
+
+        ScrollFades.forEach(el => observer.observe(el));
+        titlechar.forEach(el => observer.observe(el));
+
+}
+
+//간단 페이드 인만
+{
+{
+    const ScrollFades = document.querySelectorAll(".placecontenttop, .why, .placemainarticle, .works")
+
+
+
+
+    const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+    // 요소의 상단이 뷰포트 하단에 닿을 때
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+        }, {
+        root: null,
+        rootMargin: "0px 0px -10% 0px", // 하단을 기준으로
+        threshold: 0
+        });
+
+        ScrollFades.forEach(el => observer.observe(el));
+
+
+}
+
+
+}
+
+
+
+//sticky요소들 위치 설정 (데스크탑)
+
+
+
+function StickyPosDesc ()
+{
+    const stickyCover = document.querySelector(".stickycover");
+    const stickyButton = document.querySelector(".underphoto-layout-button")
+    const UnderLayout = document.querySelector(".underphoto-layout")
+    const MainClick = document.querySelector(".mainclick");
+    const NumsilChar = document.querySelector(".invisible")
+    const serviceLayout = document.querySelector(".underphoto-services");
+
+    MainClick.style.height =`${NumsilChar.offsetHeight}px`
+
+
+    stickyCover.style.height = `${window.innerHeight*1.3+stickyButton.offsetHeight}px`
+    UnderLayout.style.top = `${window.innerHeight*0.9+stickyButton.offsetHeight}px`
+    serviceLayout.style.top = `${window.innerHeight*0.9+stickyButton.offsetHeight}px`
+}
+
+ 
+
+function StickyPosMob () {
+
+    const stickyCover = document.querySelector(".stickycover");
+    const stickyButton = document.querySelector(".underphoto-layout-button")
+    const UnderLayout = document.querySelector(".underphoto-layout")
+    const MainClick = document.querySelector(".mainclick");
+    const NumsilChar = document.querySelector(".invisible")
+    const serviceLayout = document.querySelector(".underphoto-services");
+
+
+    stickyCover.style.height = `${window.innerHeight*0.8+stickyButton.offsetHeight}px`
+    UnderLayout.style.top = `${window.innerHeight*0.9+stickyButton.offsetHeight}px`
+    serviceLayout.style.top = `${window.innerHeight*0.9+stickyButton.offsetHeight}px`
+
+}
+
+if (window.innerWidth>=1700) {
+    StickyPosDesc ();
+}
+if (window.innerWidth<700) {
+    StickyPosMob ();
+ } 
+
+
+
+{
+    const thoughtClick = document.getElementById("thoughtclick");
+    const serviceClick = document.getElementById("serviceclick");
+
+    let isThoughtActive = false;
+    let isServiceActive = false;
+
+    thoughtClick.addEventListener("click", ()=>{
+        
+        const thoughtPop = document.getElementById("thoughtpop");
+        const servicePop = document.getElementById("servicepop");
+        const thoughtText = document.getElementById("thoughtclick");
+        const serviceText = document.getElementById("serviceclick");
+
+        if(!isThoughtActive && !isServiceActive){
+        
+        thoughtPop.classList.add("rotate");
+        thoughtText.classList.add("scale");
+        thoughtOnClick();
+        }
+
+        else if(!isThoughtActive && isServiceActive){
+
+        
+        thoughtPop.classList.add("rotate");
+        thoughtText.classList.add("scale");
+        servicePop.classList.remove("rotate");
+        serviceText.classList.remove("scale")
+
+        serviceOnClickReset();
+        thoughtOnClick();
+
+        isServiceActive = !isServiceActive
+        
+        }
+        else if (isThoughtActive) {
+        
+        thoughtPop.classList.remove("rotate");
+        thoughtText.classList.remove("scale")
+        thoughtOnClickReset();
+        
+    }
+
+        isThoughtActive = !isThoughtActive;
+
+    })
+
+    serviceClick.addEventListener("click", () => {
+
+        const thoughtPop = document.getElementById("thoughtpop");
+        const servicePop = document.getElementById("servicepop");
+        const thoughtText = document.getElementById("thoughtclick");
+        const serviceText = document.getElementById("serviceclick");
+
+        if(!isServiceActive && !isThoughtActive){
+        
+        servicePop.classList.add("rotate");
+        serviceText.classList.add("scale");
+        serviceOnClick();
+        }
+
+        else if(!isServiceActive && isThoughtActive){
+
+
+        servicePop.classList.add("rotate");
+        serviceText.classList.add("scale");
+        thoughtPop.classList.remove("rotate");
+        thoughtText.classList.remove("scale");
+
+        thoughtOnClickReset();
+        serviceOnClick();
+
+        isThoughtActive = !isThoughtActive
+        
+        }
+        else if (isServiceActive) {
+
+        servicePop.classList.remove("rotate");
+        serviceText.classList.remove("scale");
+        serviceOnClickReset();
+        
+    }
+
+        isServiceActive = !isServiceActive;
+
+    })
+
+
+}
+
+
+function thoughtOnClick () {
+    const stickyCover = document.querySelector(".stickycover");
+    const stickyButton = document.querySelector(".underphoto-layout-button")
+    const UnderLayout = document.querySelector(".underphoto-layout")
+    stickyCover.style.marginBottom = '15vh'
+
+    let viewHeightRatio = 0;
+
+    if(window.innerWidth>=1700) {
+        viewHeightRatio = 1.3
+    }
+    else if (window.innerWidth<700){
+        viewHeightRatio = 0.8
+    }
+
+    stickyCover.style.height = `${window.innerHeight*viewHeightRatio+stickyButton.offsetHeight+UnderLayout.offsetHeight}px`
+    UnderLayout.classList.add("visible");
+}
+
+function thoughtOnClickReset () {
+    const stickyCover = document.querySelector(".stickycover");
+    const stickyButton = document.querySelector(".underphoto-layout-button")
+    const UnderLayout = document.querySelector(".underphoto-layout")
+
+    let viewHeightRatio = 0;
+
+    if(window.innerWidth>=1700) {
+        viewHeightRatio = 1.3
+    }
+    else if (window.innerWidth<700){
+        viewHeightRatio = 0.8
+    }
+
+    UnderLayout.classList.remove("visible");
+    stickyCover.style.height = `${window.innerHeight*viewHeightRatio+stickyButton.offsetHeight}px`
+    
+    stickyCover.style.marginBottom = '0vh'
+}
+
+function serviceOnClick () {
+    const stickyCover = document.querySelector(".stickycover");
+    const stickyButton = document.querySelector(".underphoto-layout-button")
+    const UnderLayout = document.querySelector(".underphoto-services")
+    stickyCover.style.marginBottom = '15vh'
+
+    let viewHeightRatio = 0;
+
+    if(window.innerWidth>=1700) {
+        viewHeightRatio = 1.3
+    }
+    else if (window.innerWidth<700){
+        viewHeightRatio = 0.8
+    }
+
+    stickyCover.style.height = `${window.innerHeight*viewHeightRatio+stickyButton.offsetHeight+UnderLayout.offsetHeight}px`
+    UnderLayout.classList.add("visible");
+}
+
+function serviceOnClickReset () {
+    const stickyCover = document.querySelector(".stickycover");
+    const stickyButton = document.querySelector(".underphoto-layout-button")
+    const UnderLayout = document.querySelector(".underphoto-services")
+
+    let viewHeightRatio = 0;
+
+    if(window.innerWidth>=1700) {
+        viewHeightRatio = 1.3
+    }
+    else if (window.innerWidth<700){
+        viewHeightRatio = 0.8
+    }
+
+    UnderLayout.classList.remove("visible");
+    stickyCover.style.height = `${window.innerHeight*viewHeightRatio+stickyButton.offsetHeight}px`
+    stickyCover.style.marginBottom = '0vh'
+}
+
+
+
+
+
+function titleScrollOpacity () {
+    const titleView = document.querySelector(".title")
+    const currentScrollY = window.pageYOffset
+    const currentWindowHeight = window.innerHeight;
+
+    titleView.style.filter = (`blur(${(currentScrollY/currentWindowHeight)*30}px)`)
+
+}
+
+function titleScrollTop () {
+    const titleView = document.querySelector(".title")
+    const currentScrollY = window.pageYOffset
+    const currentWindowHeight = window.innerHeight;
+
+    titleView.style.top = -(currentScrollY)*0.3 + 'px'
+    if ((currentScrollY===currentWindowHeight)) {
+        return
+    }
+    
+}
+
+
+
+
+{ window.addEventListener("scroll" ,() => {
+        const currentScrollY = window.pageYOffset
+        const currentWindowHeight = window.innerHeight;
+        const currentWindowWidth = window.innerWidth;
+
+        ScrollAniContent();
+        
+        if(currentScrollY<currentWindowHeight){
+        titleScrollOpacity();
+        titleScrollTop ();
+        }
+
+        
+
+        
+        
+})}
+
+//layoutphoto height 설정
+
+    function UnderphotoDescImgResize () {
+    
+    const layoutPhotoFirst = document.getElementById("underphoto-firstPhoto");
+    const layoutPhotoSecond = document.getElementById("underphoto-secondPhoto");
+
+    const layoutArticleFirst = document.getElementById("underphoto-firstArticle")
+    const layoutArticleSecond = document.getElementById("underphoto-secondArticle")
+
+    layoutPhotoFirst.style.height = `${layoutArticleFirst.offsetHeight}px`
+    layoutPhotoSecond.style.height = `${layoutArticleSecond.offsetHeight}px`
+
+    }
+
+    /* function UnderphotoMobImgResize () {
+    
+    const layoutPhotoFirst = document.getElementById("underphoto-firstPhoto");
+    const layoutPhotoSecond = document.getElementById("underphoto-secondPhoto");
+
+    layoutPhotoFirst.style.height = `$500px`
+    layoutPhotoSecond.style.height = `$00icleSecond.offsetHeight}px`
+
+    } */
+
+    if(window.innerWidth>=1700){
+
+        UnderphotoDescImgResize ();
+    }
+    
+
+
+
+
+
+//Gearlist position 설정 
+
+{
+    const contentTop = document.querySelector(".placecontenttop");
+    const gearlistposition = document.querySelector(".gearlistmenu");
+
+    const contentTopHeight = contentTop.offsetHeight;
+    gearlistposition.style.top = `${contentTopHeight}px`
+    
+
+}
+//Ratelist position 설정
+{
+    const contentTop = document.querySelector(".placecontenttop");
+    const ratemenuposition = document.querySelector(".ratemenu");
+
+    const contentTopHeight = contentTop.offsetHeight;
+    ratemenuposition.style.top = `${contentTopHeight}px`
+    
+
+}
+
+//기본 상태에서 Gearlist 클릭시 요소 실행
+
+function ClickHeightSet ()
+    {
+    const placeSize = document.getElementById("placecontent");
+    const gearlist = document.querySelector(".gearlistmenu");
+
+    const gearlistHeight = gearlist.offsetHeight;
+    placeSize.style.height = `${window.innerHeight + gearlistHeight + 100}px`
+    }
+
+function ClickHeightReset ()
+    {
+    const placeSize = document.getElementById("placecontent");
+    const gearlist = document.querySelector(".gearlistmenu");
+
+    const gearlistHeight = gearlist.offsetHeight;
+    placeSize.style.height = `${window.innerHeight}px`
+    }
+
+
+
+
+
+
+//소개글 위치 이동
+function ClickPositionSet ()
+    {
+    const mainArticle = document.querySelector(".placemainarticle");
+    const gearlist = document.querySelector(".gearlistmenu");
+
+    const gearlistHeight = gearlist.offsetHeight;
+    mainArticle.style.top = `${gearlistHeight}px`
+
+    }
+
+function ClickPositionReset ()
+    {
+    const mainArticle = document.querySelector(".placemainarticle");
+    const gearlist = document.querySelector(".gearlistmenu");
+
+
+    const gearlistHeight = gearlist.offsetHeight;
+
+   
+
+    mainArticle.style.top = `0px`
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+//메뉴 opacity 조정
+function ClickMenuOpacitySet ()
+    {
+    const gearlist = document.querySelector(".gearlistmenu");
+    gearlist.classList.add("visible");
+    }
+
+    function ClickMenuOpacityReset ()
+    {
+    const gearlist = document.querySelector(".gearlistmenu");
+    gearlist.classList.remove("visible");
+    }
+
+
+
+//무상태에서 메뉴 내려오는 상황
+ {
+    const gearlistClick = document.getElementById("gearlistclick");
+    const ratelistClick = document.getElementById("ratelistclick");
+    const gearPop = document.getElementById("gearpop");
+    const ratePop = document.getElementById("ratepop");
+    
+
+    let isGearActive = false;
+    let isRateActive = false;
+
+    gearlistClick.addEventListener("click", ()=>{
+
+
+        if(!isGearActive && !isRateActive) {
+        gearPop.classList.add("rotate");
+        gearlistClick.classList.add("scale");
+
+        ClickHeightSet ();
+        ClickPositionSet ();
+        ClickMenuOpacitySet ();
+
+        }
+
+        else if (!isGearActive && isRateActive) 
+        {
+        gearPop.classList.add("rotate");
+        gearlistClick.classList.add("scale");
+        ratePop.classList.remove("rotate");
+        ratelistClick.classList.remove("scale")
+
+        
+
+        ClickRateMenuOpacityReset ();
+        ClickRatePositionReset ();
+        ClickRateHeightReset ();
+        
+        
+
+        ClickHeightSet ();
+        ClickPositionSet ();
+        ClickMenuOpacitySet ();
+       
+        
+        isRateActive = !isRateActive;
+        
+
+        }
+        else if (isGearActive) {
+        gearPop.classList.remove("rotate");
+        gearlistClick.classList.remove("scale");
+        
+        ClickHeightReset ();
+        ClickPositionReset ();
+        ClickMenuOpacityReset ();
+        }
+
+        isGearActive = !isGearActive;
+       
+
+    });
+
+    ratelistClick.addEventListener("click", ()=>{
+
+        if(!isRateActive && !isGearActive) {
+        
+        ratePop.classList.add("rotate");
+        ratelistClick.classList.add("scale");
+
+
+        ClickRateHeightSet ();
+        ClickRatePositionSet ();
+        ClickRateMenuOpacitySet ();
+
+        }
+
+        else if (!isRateActive && isGearActive) 
+        {
+        ratePop.classList.add("rotate");
+        ratelistClick.classList.add("scale");
+        gearPop.classList.remove("rotate");
+        gearlistClick.classList.remove("scale");
+    
+        
+
+        ClickMenuOpacityReset ();
+        ClickPositionReset ();
+        ClickHeightReset ();
+        
+       
+
+        ClickRateHeightSet ();
+        ClickRatePositionSet ();
+        ClickRateMenuOpacitySet ();
+       
+        
+        isGearActive = !isGearActive;
+        
+        }
+
+        else if (isRateActive) {
+        
+        ratePop.classList.remove("rotate");
+        ratelistClick.classList.remove("scale");
+
+        ClickRateMenuOpacityReset ();
+        ClickRatePositionReset ();
+        ClickRateHeightReset ();
+        
+        
+        }
+
+        isRateActive = !isRateActive;
+       
+
+    });
+
+
+}
+
+//초기 상태에서 Rate메뉴를 클릭하는 경우
+ 
+
+    
+
+//placecontent 높이 늘리기
+function ClickRateHeightSet ()
+    {
+    const placeSize = document.getElementById("placecontent");
+    const gearlist = document.querySelector(".ratemenu");
+    //편의상 변수 이름은 수정하지 않음
+    const gearlistHeight = gearlist.offsetHeight;
+    
+    placeSize.style.height = `${window.innerHeight + gearlistHeight + 100}px`
+    }
+
+function ClickRateHeightReset ()
+    {
+    const placeSize = document.getElementById("placecontent");
+
+
+    placeSize.style.height = `${window.innerHeight}px`
+    }
+
+
+
+
+//소개글 위치 이동
+function ClickRatePositionSet ()
+    {
+    const mainArticle = document.querySelector(".placemainarticle");
+    const gearlist = document.querySelector(".ratemenu");
+
+    const gearlistHeight = gearlist.offsetHeight;
+    mainArticle.style.top = `${gearlistHeight}px`
+    }
+
+function ClickRatePositionReset ()
+    {
+    const mainArticle = document.querySelector(".placemainarticle");
+    const gearlist = document.querySelector(".ratemenu");
+
+
+    mainArticle.style.top = `0px`
+
+    }
+
+
+
+
+//메뉴 opacity 조정
+function ClickRateMenuOpacitySet () 
+    {
+    const gearlist = document.querySelector(".ratemenu");
+    gearlist.classList.add("visible");
+    }
+
+    function ClickRateMenuOpacityReset ()
+    {
+    const gearlist = document.querySelector(".ratemenu");
+    gearlist.classList.remove("visible");
+    }
+
+
+
+//무상태에서 메뉴 내려오는 상황
+
+
+
+

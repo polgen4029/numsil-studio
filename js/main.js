@@ -67,28 +67,34 @@ function ScrollAniContent () {
         }
     }
 }
+{
+    const Stickcover = document.querySelector(".sticky-cover-cover");
+    window.addEventListener("scroll" , ()=>{
+        //console.log(Stickcover.offsetTop)
+    })
+}
+
+
 
 {
-        const stickyStart = document.querySelector(".stickyscroll");
+        const stickyStart = document.querySelector(".lastwords-container");
         const lastWords = document.querySelector('.lastwords');
-        const stickyCover = document.querySelector('.stickycover');
 
         window.addEventListener('scroll', () => {
             const windowHeight = window.innerHeight;
             const stickyRect = stickyStart.getBoundingClientRect();
-            const coverRect = stickyCover.getBoundingClientRect();
             const currentScroll = window.pageYOffset;
 
             // 여유 구간(offset)
             const offsetStart = 0;
-            const offsetEnd = -windowHeight*0.5;
+            const offsetEnd = -windowHeight*1.5;
 
             // 색상 변화 시작과 종료 scroll 값
             const scrollStart = currentScroll + stickyRect.top + offsetStart;
-            const scrollEnd = currentScroll + coverRect.top - windowHeight + offsetEnd;
+            const scrollEnd = scrollStart + Math.abs(stickyRect.top-stickyRect.bottom) + offsetEnd;
 
             // progress 계산
-            let progress = (currentScroll - scrollStart) / (scrollEnd - scrollStart);
+            let progress = (currentScroll - scrollStart) / (scrollEnd - scrollStart)*2;
             progress = Math.max(0, Math.min(1, progress)); // 0~1 clamp
 
             // 배경색: #F3F2EC → #ac2a03
@@ -120,15 +126,21 @@ function ScrollAniContent () {
 //Sticky 효과 주기
 
 {
-            const stickyStart = document.querySelector(".stickyscroll");
-            const lastWords = document.querySelector(".lastwords");
+            
 
             window.addEventListener("scroll", () => {
+                const stickyStart = document.querySelector(".lastwords-container");
+                const lastWords = document.querySelector(".lastwords");
                 const stickyRect = stickyStart.getBoundingClientRect();
-                const lasWordsRect = lastWords.getBoundingClientRect();
 
+ 
                 if (stickyRect.top <= 0) {
                     lastWords.classList.add("sticky")
+     
+
+                }
+                else {
+                    lastWords.classList.remove("sticky")
                 }
                 
                 
@@ -231,9 +243,9 @@ function StickyPosMob () {
     const serviceLayout = document.querySelector(".underphoto-services");
 
 
-    stickyCover.style.height = `${window.innerHeight*0.8+stickyButton.offsetHeight}px`
-    UnderLayout.style.top = `${window.innerHeight*0.9+stickyButton.offsetHeight}px`
-    serviceLayout.style.top = `${window.innerHeight*0.9+stickyButton.offsetHeight}px`
+    stickyCover.style.height = `${stickyButton.offsetHeight}px`
+    UnderLayout.style.top = `${stickyButton.offsetHeight}px`
+    serviceLayout.style.top = `${stickyButton.offsetHeight}px`
 
 }
 
@@ -341,18 +353,9 @@ function thoughtOnClick () {
     const stickyCover = document.querySelector(".stickycover");
     const stickyButton = document.querySelector(".underphoto-layout-button")
     const UnderLayout = document.querySelector(".underphoto-layout")
-    stickyCover.style.marginBottom = '15vh'
+    
 
-    let viewHeightRatio = 0;
-
-    if(window.innerWidth>=1700) {
-        viewHeightRatio = 1.3
-    }
-    else if (window.innerWidth<700){
-        viewHeightRatio = 0.8
-    }
-
-    stickyCover.style.height = `${window.innerHeight*viewHeightRatio+stickyButton.offsetHeight+UnderLayout.offsetHeight}px`
+    stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+100}px`
     UnderLayout.classList.add("visible");
 }
 
@@ -361,37 +364,21 @@ function thoughtOnClickReset () {
     const stickyButton = document.querySelector(".underphoto-layout-button")
     const UnderLayout = document.querySelector(".underphoto-layout")
 
-    let viewHeightRatio = 0;
-
-    if(window.innerWidth>=1700) {
-        viewHeightRatio = 1.3
-    }
-    else if (window.innerWidth<700){
-        viewHeightRatio = 0.8
-    }
 
     UnderLayout.classList.remove("visible");
-    stickyCover.style.height = `${window.innerHeight*viewHeightRatio+stickyButton.offsetHeight}px`
+    stickyCover.style.height = `${stickyButton.offsetHeight}px`
     
-    stickyCover.style.marginBottom = '0vh'
+    //stickyCover.style.marginBottom = '0vh'
 }
 
 function serviceOnClick () {
     const stickyCover = document.querySelector(".stickycover");
     const stickyButton = document.querySelector(".underphoto-layout-button")
     const UnderLayout = document.querySelector(".underphoto-services")
-    stickyCover.style.marginBottom = '15vh'
+    //stickyCover.style.marginBottom = '15vh'
 
-    let viewHeightRatio = 0;
 
-    if(window.innerWidth>=1700) {
-        viewHeightRatio = 1.3
-    }
-    else if (window.innerWidth<700){
-        viewHeightRatio = 0.8
-    }
-
-    stickyCover.style.height = `${window.innerHeight*viewHeightRatio+stickyButton.offsetHeight+UnderLayout.offsetHeight}px`
+    stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+100}px`
     UnderLayout.classList.add("visible");
 }
 
@@ -400,18 +387,11 @@ function serviceOnClickReset () {
     const stickyButton = document.querySelector(".underphoto-layout-button")
     const UnderLayout = document.querySelector(".underphoto-services")
 
-    let viewHeightRatio = 0;
 
-    if(window.innerWidth>=1700) {
-        viewHeightRatio = 1.3
-    }
-    else if (window.innerWidth<700){
-        viewHeightRatio = 0.8
-    }
 
     UnderLayout.classList.remove("visible");
-    stickyCover.style.height = `${window.innerHeight*viewHeightRatio+stickyButton.offsetHeight}px`
-    stickyCover.style.marginBottom = '0vh'
+    stickyCover.style.height = `${stickyButton.offsetHeight}px`
+    //stickyCover.style.marginBottom = '0vh'
 }
 
 

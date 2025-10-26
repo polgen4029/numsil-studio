@@ -140,12 +140,12 @@ function ScrollAniContent () {
                 const stickyRect = stickyStart.getBoundingClientRect();
 
  
-                if (stickyRect.top <= 0) {
+                if (stickyRect.top <= 0 || stickyRect.bottom <= window.innerHeight) {
                     lastWords.classList.add("sticky")
      
 
                 }
-                else {
+                else if (stickyRect.top > 0 || stickyRect.bottom > window.innerHeight) {
                     lastWords.classList.remove("sticky")
                 }
                 

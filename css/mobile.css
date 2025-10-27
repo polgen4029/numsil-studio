@@ -928,8 +928,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-
-    will-change: top;
 }
 
 
@@ -1189,7 +1187,7 @@
     font-size: 0.8rem;
     font-weight: 100;
     line-height: 2;
-    text-align: right;
+    text-align: left;
 
     display: flex;
     align-items: center;
@@ -1200,7 +1198,7 @@
     font-size: 2.5rem;
     width: 18%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -1208,7 +1206,7 @@
     width: 85vw;
     display: flex;
     flex-direction: column;
-    height: calc(var(--fixed-vh) * 90);
+    height: calc(var(--fixed-vh) * 150);
 
     justify-content: flex-start;
     align-items: center;
@@ -1222,7 +1220,10 @@
     align-items: center;
 
     width: 100vw;
-    height: calc(var(--fixed-vh) * 30);
+    height: calc(var(--fixed-vh) * 50);
+
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .service-img img{
     width: 100%;

@@ -94,7 +94,7 @@ function ScrollAniContent () {
             const scrollEnd = scrollStart + Math.abs(stickyRect.top-stickyRect.bottom) + offsetEnd;
 
             // progress 계산
-            let progress = (currentScroll - scrollStart) / (scrollEnd - scrollStart)*1.5;
+            let progress = (currentScroll - scrollStart) / (scrollEnd - scrollStart);
             progress = Math.max(0, Math.min(1, progress)); // 0~1 clamp
 
             // 배경색: #F3F2EC → #ac2a03
@@ -142,20 +142,26 @@ function ScrollAniContent () {
  
             
                     
-                if(stickyRect.top>0){
-                    lastWords.classList.remove("sticky")
+
+
+                if(stickyRect.top<0 && stickyRect.bottom>=0){
+                    lastWords.classList.add("sticky")
+
                 }
 
-                else {
-                    lastWords.classList.add("sticky")
-                    
-                }
                 
+                else if (stickyRect.top<0 && stickyRect.bottom<0) {
+                    lastWords.classList.remove("sticky")
+                }
+                else if (stickyRect.top>=0) {
+                    lastWords.classList.remove("sticky")
+                }
                 
                 
             });
 
 }
+
 
 
 

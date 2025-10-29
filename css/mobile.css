@@ -1190,7 +1190,7 @@
 }
 
 .first-service{
-    display: flex;
+
     margin-top: calc(var(--fixed-vh) * 5);
     margin-bottom: calc(var(--fixed-vh) * 5);
 }

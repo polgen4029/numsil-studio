@@ -394,9 +394,13 @@ function thoughtOnClick () {
     const stickyCover = document.querySelector(".stickycover");
     const stickyButton = document.querySelector(".underphoto-layout-button")
     const UnderLayout = document.querySelector(".underphoto-layout")
+
+    const rootStyle = getComputedStyle(document.documentElement);
+    const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
     
 
-    stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`
+    if(window.innerWidth>=1700){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`}
+    else if(window.innerWidth<700){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+16*(fixedVh)}px`}
 
     UnderLayout.classList.add("visible");
 }
@@ -418,10 +422,13 @@ function serviceOnClick () {
     const stickyCover = document.querySelector(".stickycover");
     const stickyButton = document.querySelector(".underphoto-layout-button")
     const UnderLayout = document.querySelector(".underphoto-services")
-    //stickyCover.style.marginBottom = '15vh'
+
+    const rootStyle = getComputedStyle(document.documentElement);
+    const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
 
 
-    stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`
+    if(window.innerWidth>=1700){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`}
+    else if(window.innerWidth<700){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+16*(fixedVh)}px`}
 
 
     UnderLayout.classList.add("visible");
@@ -533,15 +540,22 @@ function titleScrollTop () {
 
 }
 
-//기본 상태에서 Gearlist 클릭시 요소 실행
+//기본 상태에서 Gearlist 클릭시 요소 실행 (DESKTOP)
 
 function ClickHeightSet ()
     {
     const placeSize = document.getElementById("placecontent");
     const gearlist = document.querySelector(".gearlistmenu");
 
+    const rootStyle = getComputedStyle(document.documentElement);
+    const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
+
     const gearlistHeight = gearlist.offsetHeight;
-    placeSize.style.height = `${window.innerHeight + gearlistHeight + 100}px`
+
+    if(window.innerWidth>=1700){placeSize.style.height = `${window.innerHeight + gearlistHeight + 100}px`}
+    else if(window.innerWidth<700){placeSize.style.height = `${fixedVh * 100 + gearlistHeight + 100}px`}
+
+
     }
 
 function ClickHeightReset ()
@@ -549,9 +563,21 @@ function ClickHeightReset ()
     const placeSize = document.getElementById("placecontent");
     const gearlist = document.querySelector(".gearlistmenu");
 
+    const rootStyle = getComputedStyle(document.documentElement);
+    const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
+
     const gearlistHeight = gearlist.offsetHeight;
-    placeSize.style.height = `${window.innerHeight}px`
+    if(window.innerWidth>=1700){placeSize.style.height = `${window.innerHeight}px`}
+    else if(window.innerWidth<700){placeSize.style.height = `${fixedVh * 100}px`}
+
     }
+
+
+
+
+
+
+
 
 
 
@@ -626,8 +652,9 @@ function ClickMenuOpacitySet ()
         if(!isGearActive && !isRateActive) {
         gearPop.classList.add("rotate");
         gearlistClick.classList.add("scale");
-
+        
         ClickHeightSet ();
+       
         ClickPositionSet ();
   
         ClickMenuOpacitySet ();
@@ -647,7 +674,7 @@ function ClickMenuOpacitySet ()
 
         ClickRateHeightReset ();
         ClickHeightSet ();
-   
+        
 
         ClickRateMenuOpacityReset ();
         ClickMenuOpacitySet ();
@@ -662,8 +689,9 @@ function ClickMenuOpacitySet ()
         gearlistClick.classList.remove("scale");
         
         ClickMenuOpacityReset ();
-  
         ClickHeightReset ();
+      
+    
         ClickPositionReset ();
         
         }
@@ -680,11 +708,11 @@ function ClickMenuOpacitySet ()
         ratePop.classList.add("rotate");
         ratelistClick.classList.add("scale");
 
-
+ 
         ClickRateHeightSet ();
         ClickRatePositionSet ();
-    
         ClickRateMenuOpacitySet ();
+     
 
         }
 
@@ -701,6 +729,8 @@ function ClickMenuOpacitySet ()
 
         ClickHeightReset ();
         ClickRateHeightSet ();
+        
+
 
         
 
@@ -720,7 +750,11 @@ function ClickMenuOpacitySet ()
         ClickRateMenuOpacityReset ();
 
         ClickRatePositionReset ();
+
+   
         ClickRateHeightReset ();
+        
+    
         
         
         }
@@ -739,14 +773,19 @@ function ClickMenuOpacitySet ()
     
 
 //placecontent 높이 늘리기
+
 function ClickRateHeightSet ()
     {
     const placeSize = document.getElementById("placecontent");
     const gearlist = document.querySelector(".ratemenu");
     //편의상 변수 이름은 수정하지 않음
+    const rootStyle = getComputedStyle(document.documentElement);
+    const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
+
     const gearlistHeight = gearlist.offsetHeight;
-    
-    placeSize.style.height = `${window.innerHeight + gearlistHeight + 100}px`
+
+    if(window.innerWidth>=1700){placeSize.style.height = `${window.innerHeight + gearlistHeight + 100}px`}
+    else if(window.innerWidth<700){placeSize.style.height = `${fixedVh * 100 + gearlistHeight + 100}px`}
     }
 
 function ClickRateHeightReset ()
@@ -754,7 +793,11 @@ function ClickRateHeightReset ()
     const placeSize = document.getElementById("placecontent");
 
 
-    placeSize.style.height = `${window.innerHeight}px`
+    const rootStyle = getComputedStyle(document.documentElement);
+    const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
+
+    if(window.innerWidth>=1700){placeSize.style.height = `${window.innerHeight}px`}
+    else if(window.innerWidth<700){placeSize.style.height = `${fixedVh * 100}px`}
     }
 
 

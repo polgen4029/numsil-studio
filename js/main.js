@@ -67,13 +67,6 @@ function ScrollAniContent () {
         }
     }
 }
-{
-    const Stickcover = document.querySelector(".sticky-cover-cover");
-    window.addEventListener("scroll" , ()=>{
-        //console.log(Stickcover.offsetTop)
-    })
-}
-
 
 
 {
@@ -124,12 +117,14 @@ function ScrollAniContent () {
 
 //Sticky 요소 정렬
 
-{
-    const stickyArticle = document.querySelector(".lastwords");
-    const ArticleHeight = stickyArticle.offsetHeight;
-    stickyArticle.style.paddingTop = `${window.innerHeight-(ArticleHeight/2)}`
 
-}
+function lastWordsPaddingSet ()
+        {
+            const stickyArticle = document.querySelector(".lastwords.textcontent");
+            const ArticleHeight = stickyArticle.offsetHeight;
+            stickyArticle.style.paddingTop = `${(window.innerHeight/2)-(ArticleHeight/2)}px`
+
+        }
 //Sticky 효과 주기
 {
             
@@ -168,7 +163,7 @@ function ScrollAniContent () {
 
 //간단 스크롤시 요소들 페이드인 페이드아웃
 {
-    const ScrollFades = document.querySelectorAll(".discocontent, .mainarticle ")
+    const ScrollFades = document.querySelectorAll(".discocontent, .mainarticle")
     const titlechar = document.querySelectorAll(".Mix_T");
 
 
@@ -241,9 +236,9 @@ function StickyPosDesc ()
     MainClick.style.height =`${NumsilChar.offsetHeight}px`
 
 
-    stickyCover.style.height = `${window.innerHeight*1.3+stickyButton.offsetHeight}px`
-    UnderLayout.style.top = `${window.innerHeight*0.9+stickyButton.offsetHeight}px`
-    serviceLayout.style.top = `${window.innerHeight*0.9+stickyButton.offsetHeight}px`
+    stickyCover.style.height = `${stickyButton.offsetHeight}px`
+    UnderLayout.style.top = `${stickyButton.offsetHeight}px`
+    serviceLayout.style.top = `${stickyButton.offsetHeight}px`
 }
 
 
@@ -256,7 +251,7 @@ function StickyPosMob () {
     const stickyButton = document.querySelector(".underphoto-layout-button")
     const UnderLayout = document.querySelector(".underphoto-layout")
     const MainClick = document.querySelector(".mainclick");
-    const NumsilChar = document.querySelector(".invisible")
+    const NumsilChar = document.querySelector(".invisible");
     const serviceLayout = document.querySelector(".underphoto-services");
 
 
@@ -266,23 +261,52 @@ function StickyPosMob () {
 
 }
 
-if (window.innerWidth>=1700) {
-    StickyPosDesc ();
+function mainArticleWidthSet () {
+    const mainArticle = document.querySelector(".mainarticle");
+    const introTop = document.querySelector(".intercontenttop");
+
+    mainArticle.style.width = `${introTop.offsetWidth}px`
 }
-if (window.innerWidth<700) {
-    StickyPosMob ();
- } 
+
+
+//delay function
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 
 
 
 {
     const thoughtClick = document.getElementById("thoughtclick");
     const serviceClick = document.getElementById("serviceclick");
+    const serviceTopButton = document.querySelector(".scrollbutton-container")
 
     let isThoughtActive = false;
     let isServiceActive = false;
+    
+    serviceTopButton.addEventListener("click", async ()=>{
+        const servicePop = document.getElementById("servicepop");
+        const serviceText = document.getElementById("serviceclick");
 
-    thoughtClick.addEventListener("click", ()=>{
+        servicePop.classList.remove("rotate");
+        serviceText.classList.remove("scale");
+
+        ScrollPos = document.querySelector(".underphoto-layout-button");
+        const ScrollTop = ScrollPos.getBoundingClientRect().top + window.scrollY
+
+        
+        window.scrollTo({
+            top: ScrollTop,
+            behavior: "smooth"});
+        await delay(1000);
+        serviceOnClickReset();
+        isServiceActive = !isServiceActive
+    })
+
+
+    thoughtClick.addEventListener("click", async ()=>{
         
         const thoughtPop = document.getElementById("thoughtpop");
         const servicePop = document.getElementById("servicepop");
@@ -302,7 +326,7 @@ if (window.innerWidth<700) {
         thoughtPop.classList.add("rotate");
         thoughtText.classList.add("scale");
         servicePop.classList.remove("rotate");
-        serviceText.classList.remove("scale")
+        serviceText.classList.remove("scale");
 
         serviceOnClickReset();
         thoughtOnClick();
@@ -372,7 +396,8 @@ function thoughtOnClick () {
     const UnderLayout = document.querySelector(".underphoto-layout")
     
 
-    stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+100}px`
+    stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`
+
     UnderLayout.classList.add("visible");
 }
 
@@ -383,6 +408,7 @@ function thoughtOnClickReset () {
 
 
     UnderLayout.classList.remove("visible");
+
     stickyCover.style.height = `${stickyButton.offsetHeight}px`
     
     //stickyCover.style.marginBottom = '0vh'
@@ -395,7 +421,9 @@ function serviceOnClick () {
     //stickyCover.style.marginBottom = '15vh'
 
 
-    stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+100}px`
+    stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`
+
+
     UnderLayout.classList.add("visible");
 }
 
@@ -407,6 +435,7 @@ function serviceOnClickReset () {
 
 
     UnderLayout.classList.remove("visible");
+ 
     stickyCover.style.height = `${stickyButton.offsetHeight}px`
     //stickyCover.style.marginBottom = '0vh'
 }
@@ -472,19 +501,9 @@ function titleScrollTop () {
 
     }
 
-    /* function UnderphotoMobImgResize () {
-    
-    const layoutPhotoFirst = document.getElementById("underphoto-firstPhoto");
-    const layoutPhotoSecond = document.getElementById("underphoto-secondPhoto");
-
-    layoutPhotoFirst.style.height = `$500px`
-    layoutPhotoSecond.style.height = `$00icleSecond.offsetHeight}px`
-
-    } */
-
     if(window.innerWidth>=1700){
 
-        UnderphotoDescImgResize ();
+        
     }
     
 
@@ -601,7 +620,7 @@ function ClickMenuOpacitySet ()
     let isGearActive = false;
     let isRateActive = false;
 
-    gearlistClick.addEventListener("click", ()=>{
+    gearlistClick.addEventListener("click", async ()=>{
 
 
         if(!isGearActive && !isRateActive) {
@@ -610,6 +629,7 @@ function ClickMenuOpacitySet ()
 
         ClickHeightSet ();
         ClickPositionSet ();
+  
         ClickMenuOpacitySet ();
 
         }
@@ -621,16 +641,15 @@ function ClickMenuOpacitySet ()
         ratePop.classList.remove("rotate");
         ratelistClick.classList.remove("scale")
 
-        
+        ClickRatePositionReset ();
+        ClickPositionSet ();
+  
+
+        ClickRateHeightReset ();
+        ClickHeightSet ();
+   
 
         ClickRateMenuOpacityReset ();
-        ClickRatePositionReset ();
-        ClickRateHeightReset ();
-        
-        
-
-        ClickHeightSet ();
-        ClickPositionSet ();
         ClickMenuOpacitySet ();
        
         
@@ -642,9 +661,11 @@ function ClickMenuOpacitySet ()
         gearPop.classList.remove("rotate");
         gearlistClick.classList.remove("scale");
         
+        ClickMenuOpacityReset ();
+  
         ClickHeightReset ();
         ClickPositionReset ();
-        ClickMenuOpacityReset ();
+        
         }
 
         isGearActive = !isGearActive;
@@ -652,7 +673,7 @@ function ClickMenuOpacitySet ()
 
     });
 
-    ratelistClick.addEventListener("click", ()=>{
+    ratelistClick.addEventListener("click", async ()=>{
 
         if(!isRateActive && !isGearActive) {
         
@@ -662,6 +683,7 @@ function ClickMenuOpacitySet ()
 
         ClickRateHeightSet ();
         ClickRatePositionSet ();
+    
         ClickRateMenuOpacitySet ();
 
         }
@@ -673,16 +695,16 @@ function ClickMenuOpacitySet ()
         gearPop.classList.remove("rotate");
         gearlistClick.classList.remove("scale");
     
+        ClickPositionReset ();
+        ClickRatePositionSet ();
+ 
+
+        ClickHeightReset ();
+        ClickRateHeightSet ();
+
         
 
         ClickMenuOpacityReset ();
-        ClickPositionReset ();
-        ClickHeightReset ();
-        
-       
-
-        ClickRateHeightSet ();
-        ClickRatePositionSet ();
         ClickRateMenuOpacitySet ();
        
         
@@ -696,6 +718,7 @@ function ClickMenuOpacitySet ()
         ratelistClick.classList.remove("scale");
 
         ClickRateMenuOpacityReset ();
+
         ClickRatePositionReset ();
         ClickRateHeightReset ();
         
@@ -758,9 +781,6 @@ function ClickRatePositionReset ()
     }
 
 
-
-
-//메뉴 opacity 조정
 function ClickRateMenuOpacitySet () 
     {
     const gearlist = document.querySelector(".ratemenu");
@@ -774,8 +794,41 @@ function ClickRateMenuOpacitySet ()
     }
 
 
+function WorkWidthSet () {
+    const workText = document.querySelector(".works");
+    const workArticle = document.querySelector(".works-article")
+    workTextWidth = workText.offsetWidth;
 
-//무상태에서 메뉴 내려오는 상황
+    workArticle.style.width = `${workTextWidth}px`
+
+
+}
+
+
+
+//속성 설정용 (높이 너비 등)
+
+if (window.innerWidth>=1700) {
+    StickyPosDesc ();
+    mainArticleWidthSet();
+    lastWordsPaddingSet ();
+    UnderphotoDescImgResize ();
+    WorkWidthSet ();
+
+    window.addEventListener("resize", ()=>{
+        StickyPosDesc ();
+        mainArticleWidthSet();
+        lastWordsPaddingSet ();
+        UnderphotoDescImgResize ();
+        WorkWidthSet ();
+
+    })
+}
+if (window.innerWidth<700) {
+    StickyPosMob ();
+    lastWordsPaddingSet ();
+    WorkWidthSet ();
+ } 
 
 
 

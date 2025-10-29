@@ -1016,7 +1016,6 @@
     
     opacity: 0;
 
-    transition-duration: 0.3s;
 
 }
 .underphoto-layout.visible {
@@ -1186,7 +1185,6 @@
     justify-content: flex-start;
     align-items: center;
 
-    transition-duration: 0.3s;
 }
 
 .underphoto-services.visible{

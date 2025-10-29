@@ -1015,7 +1015,6 @@
     
     opacity: 0;
 
-    transition-duration: 0.4s;
 }
 .underphoto-layout.visible {
     opacity: 1;
@@ -1311,6 +1310,11 @@
     height: 20vw;
     background-color: black;
     z-index: 500;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 
@@ -1323,6 +1327,7 @@
 
     background-color: #050e61;
     width: 100vw;
+    height: calc(var(--fixed-vh)*100);
 
     position:relative;
 
@@ -1333,10 +1338,11 @@
     justify-content: flex-start;
     align-items: center;  
     z-index: 2700;
+
+    overflow:clip;
 }
 .placewave{
-    position: absolute;
-        top: -11vw;
+
         width: 100vw;
         height: 12vw;
         

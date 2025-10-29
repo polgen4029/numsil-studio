@@ -568,7 +568,7 @@ function ClickHeightReset ()
 
     const gearlistHeight = gearlist.offsetHeight;
     if(window.innerWidth>=1700){placeSize.style.height = `${window.innerHeight}px`}
-    else if(window.innerWidth<700){placeSize.style.height = `${fixedVh * 100+100}px`}
+    else if(window.innerWidth<700){placeSize.style.height = `${fixedVh * 100}px`}
 
     }
 
@@ -797,7 +797,7 @@ function ClickRateHeightReset ()
     const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
 
     if(window.innerWidth>=1700){placeSize.style.height = `${window.innerHeight}px`}
-    else if(window.innerWidth<700){placeSize.style.height = `${fixedVh * 100+100}px`}
+    else if(window.innerWidth<700){placeSize.style.height = `${fixedVh * 100}px`}
     }
 
 

@@ -1020,7 +1020,7 @@
     justify-content: flex-start;
     align-items: center;
 
-    
+    margin-top: 16vh;
     opacity: 0;
 
     transition-duration: 0.4s;
@@ -1194,7 +1194,6 @@
     width: 70vw;
 
     opacity:0;
-    transition-duration: 1s;
 
     display: flex;
     flex-direction: column;
@@ -1341,7 +1340,26 @@
     height: 20vw;
     background-color: black;
     z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
 }
+
+.place-underbox{
+    width: 100vw;
+    height: 20vw;
+    background-color: #050e61;
+    z-index: 2000;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
 
 
 
@@ -1355,7 +1373,7 @@
 
     background-color: #050e61;
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
 
     position:relative;
 
@@ -1369,8 +1387,7 @@
     
 }
 .placewave{
-    position: absolute;
-        top: -12vw;
+ 
         width: 100vw;
         height: 12vw;
         
@@ -1650,8 +1667,7 @@ th, td {
 }
 
 .workwave{
-    position: absolute;
-        top: -12vw;
+
         width: 100vw;
         height: 12vw;
         

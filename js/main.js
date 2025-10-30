@@ -399,8 +399,11 @@ function thoughtOnClick () {
     const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
     
 
-    if(window.innerWidth>=1700){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`}
-    else if(window.innerWidth<700){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+16*(fixedVh)}px`}
+    if(window.innerWidth>=1700){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`} //DESKTOP
+
+
+
+    else if(window.innerWidth<1200){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+16*(fixedVh)}px`} //TABLET+MOBILE
 
     UnderLayout.classList.add("visible");
 }
@@ -427,8 +430,10 @@ function serviceOnClick () {
     const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
 
 
-    if(window.innerWidth>=1700){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`}
-    else if(window.innerWidth<700){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+16*(fixedVh)}px`}
+    if(window.innerWidth>=1700){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`} //DESKTOP
+
+
+    else if(window.innerWidth<1200){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+16*(fixedVh)}px`} //TABLET + MOBILE
 
 
     UnderLayout.classList.add("visible");
@@ -508,11 +513,6 @@ function titleScrollTop () {
 
     }
 
-    if(window.innerWidth>=1700){
-
-        
-    }
-    
 
 
 
@@ -552,8 +552,8 @@ function ClickHeightSet ()
 
     const gearlistHeight = gearlist.offsetHeight;
 
-    if(window.innerWidth>=1700){placeSize.style.height = `${window.innerHeight + gearlistHeight + 100}px`}
-    else if(window.innerWidth<700){placeSize.style.height = `${fixedVh * 100 + gearlistHeight + 100}px`}
+    if(window.innerWidth>=1700){placeSize.style.height = `${0.8*window.innerHeight + gearlistHeight + 100}px`} //DESKTOP
+    else if(window.innerWidth<1200){placeSize.style.height = `${fixedVh * 100 + gearlistHeight + 100}px`}  //TABLET + PHONE
 
 
     }
@@ -567,8 +567,8 @@ function ClickHeightReset ()
     const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
 
     const gearlistHeight = gearlist.offsetHeight;
-    if(window.innerWidth>=1700){placeSize.style.height = `${window.innerHeight}px`}
-    else if(window.innerWidth<700){placeSize.style.height = `${fixedVh * 100}px`}
+    if(window.innerWidth>=1700){placeSize.style.height = `${0.8*window.innerHeight}px`} //DESKTOP
+    else if(window.innerWidth<1200){placeSize.style.height = `${fixedVh * 100}px`} //TABLET + PHONE
 
     }
 
@@ -784,8 +784,9 @@ function ClickRateHeightSet ()
 
     const gearlistHeight = gearlist.offsetHeight;
 
-    if(window.innerWidth>=1700){placeSize.style.height = `${window.innerHeight + gearlistHeight + 100}px`}
-    else if(window.innerWidth<700){placeSize.style.height = `${fixedVh * 100 + gearlistHeight + 100}px`}
+    if(window.innerWidth>=1700){placeSize.style.height = `${0.8*window.innerHeight + gearlistHeight + 100}px`} //DESKTOP
+
+    else if(window.innerWidth<1200){placeSize.style.height = `${fixedVh * 100 + gearlistHeight + 100}px`} //TABLET + MOBILE
     }
 
 function ClickRateHeightReset ()
@@ -796,8 +797,9 @@ function ClickRateHeightReset ()
     const rootStyle = getComputedStyle(document.documentElement);
     const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
 
-    if(window.innerWidth>=1700){placeSize.style.height = `${window.innerHeight}px`}
-    else if(window.innerWidth<700){placeSize.style.height = `${fixedVh * 100}px`}
+    if(window.innerWidth>=1700){placeSize.style.height = `${0.8*window.innerHeight}px`} //DESKTOP
+
+    else if(window.innerWidth<1200){placeSize.style.height = `${fixedVh * 100}px`} //TABLET + MOBILE
     }
 
 
@@ -851,7 +853,7 @@ function WorkWidthSet () {
 
 //속성 설정용 (높이 너비 등)
 
-if (window.innerWidth>=1700) {
+if (window.innerWidth>=1700) { //DESKTOP
     StickyPosDesc ();
     mainArticleWidthSet();
     lastWordsPaddingSet ();
@@ -867,7 +869,7 @@ if (window.innerWidth>=1700) {
 
     })
 }
-if (window.innerWidth<700) {
+if (window.innerWidth<1200) { //TABLET + MOBILE
     StickyPosMob ();
     lastWordsPaddingSet ();
     WorkWidthSet ();

@@ -1024,12 +1024,15 @@
 }
 
 .mainarticle-underphoto-firstfloor {
+    position:relative;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
 }
 .mainarticle-underphoto-secondfloor {
+    position:relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1037,6 +1040,7 @@
 }
 
 .mainarticle-underphoto {
+    position:relative;
     transition-duration: 0s;
     color:#F3F2EC;
     font-size: 1rem;

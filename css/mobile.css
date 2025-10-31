@@ -1173,6 +1173,7 @@
     color: #F3F2EC;
 
     position:absolute;
+    left:0;
 
     width: 100vw;
 
@@ -1678,15 +1679,16 @@ th, td {
 .works-article {
     color:#F3F2EC;
     font-size: 1rem;
+    
   
     line-height: 180%;
-    padding-left: 40px;
-    padding-right: 50px;
+    padding-right: 5vw;
+
 
     font-weight: 100;
 
      margin-top: calc(var(--fixed-vh) * 5);
-    text-align: center;
+    text-align: right;
     word-spacing: -0.05rem;
     word-break: keep-all;
 

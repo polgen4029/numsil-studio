@@ -1004,7 +1004,7 @@
     
     
     position: absolute;
-    width: 100vw;
+    width: 100%;
 
 
     display: flex;
@@ -1017,8 +1017,13 @@
     opacity: 0;
     z-index: 1000;
 
+    will-change: opacity;
+
+
 }
 .underphoto-layout.visible {
+
+    transform: translateZ(0);
     opacity: 1;
     transition-duration: 0.3s;
 }
@@ -1181,20 +1186,25 @@
 
     position:absolute;
 
-    width: 100vw;
+    width: 100%;
 
     opacity:0;
     
+    transition-duration: 0.3s;
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+
+    will-change: opacity;
 }
 
 .underphoto-services.visible{
+    transform: translateZ(0);
     opacity: 1;
-    transition-duration: 0.3s;
+    
+
 
 }
 
@@ -1330,7 +1340,7 @@
 .place-underbox{
     width: 100vw;
     height: 20vw;
-    background-color: #050e61;
+    background-color: #071357;
     z-index: 2000;
 
     display: flex;
@@ -1347,7 +1357,7 @@
 
 .placecontent {
 
-    background-color: #050e61;
+    background-color: #071357;
     width: 100vw;
     height: calc(var(--fixed-vh)*100);
 
@@ -1654,7 +1664,7 @@ th, td {
 
 
     width: 100vw;
-    background-color: #0279db;
+    background-color: #084638;
     position:relative;
 
     z-index: 3500;
@@ -1682,6 +1692,7 @@ th, td {
     opacity: 0;
     transition-duration: 0.7s;
     line-height: 1;
+    margin-top: 70px;
 }
 .works.visible {
     opacity: 1;
@@ -1784,6 +1795,7 @@ th, td {
 
     margin-bottom: 100px;
     z-index: 3000;
+    margin-top: 100px;
     
    
 }
@@ -1863,7 +1875,7 @@ p {
 
     height: auto;
     position: relative;
-    background-color:#DCDCDC;
+    background-color:#810d0d;
 
     z-index: 500;
 }

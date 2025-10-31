@@ -1004,8 +1004,7 @@
     
     
     position: absolute;
-    width: 85vw;
-    left:7.5vw;
+    width: 100vw;
 
 
     display: flex;
@@ -1044,10 +1043,12 @@
 
     font-weight: 100;
 
-    width: 100%;
+    width: 85%;
     text-align: left;
     margin:0;
     word-break: break-all;
+
+
     
 
     padding:0;
@@ -1195,6 +1196,7 @@
     display: flex;
     margin-top: calc(var(--fixed-vh) * 5);
     margin-bottom: calc(var(--fixed-vh) * 5);
+
 }
 
 

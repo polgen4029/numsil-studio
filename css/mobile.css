@@ -1014,7 +1014,8 @@
 
     margin-top: calc(var(--fixed-vh) * 4);
     
-    opacity: 0;
+    opacity: 1;
+    z-index: 1000;
 
 }
 .underphoto-layout.visible {

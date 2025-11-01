@@ -1839,19 +1839,19 @@ th, td {
 }
 
 .disc-description strong {
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     padding: 0 5px 0 5px;
 }
 
 .disc-description small {
-    font-size: 6pt;
+    font-size: 10pt;
     margin-top: 0.8rem;
     padding: 0 5px 0 5px;
 }
 .disc-description p {
     margin: 0;
     margin-top: 0.3rem;
-    font-size: 4pt;
+    font-size: 9pt;
     padding: 0 5px 0 5px;
 
 }

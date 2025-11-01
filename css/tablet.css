@@ -1342,6 +1342,7 @@
     height: 20vw;
     background-color: black;
     z-index: 100;
+    margin-bottom:-5px ;
 
     display: flex;
     flex-direction: column;
@@ -1354,6 +1355,7 @@
     height: 20vw;
     background-color: #050e61;
     z-index: 2000;
+    margin-bottom:-5px ;
 
     display: flex;
     flex-direction: column;

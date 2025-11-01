@@ -3,7 +3,7 @@
 @media (max-width:1200px) {
 
     body {
-        background-color:black;
+        background-color:rgb(48, 47, 49);
         width: 100vw;
 
 
@@ -28,7 +28,7 @@
 
     body.loaded {
         opacity: 1;
-        background-color:black;
+        background-color:rgb(48, 47, 49);
     }
 
  
@@ -839,27 +839,6 @@
 }
 
 
-.intro-borderline{
-
-    width: 40vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    opacity: 50%;
-
-    
-}
-.borderline {
-    width: 40%;
-    border: solid black 1.2px;
-}
-.dot {
-    width:5%;
-    border: solid black 1.2px;
-    margin:0 7.5% 0 7.5%;
-  
-}
 
 .mainarticle {
     font-size: 1rem;
@@ -1827,7 +1806,7 @@ th, td {
     transition-duration: 0.3s;
 }
 
-.container img:hover{
+.img-container.dim img{
     opacity: 5%;
 }
 

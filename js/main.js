@@ -447,6 +447,15 @@ function serviceOnClickReset () {
     //stickyCover.style.marginBottom = '0vh'
 }
 
+function serviceIndexHeightSet () {
+    const ServiceIndexes = document.querySelectorAll(".service-index")
+    const ServiceArticles = document.querySelectorAll(".service-article")
+
+    for(let i=0;i<ServiceIndexes.length;i++) {
+        ServiceIndexes[i].style.height = `${ServiceArticles[i].offsetHeight}px`
+    }
+}
+
 
 
 
@@ -903,6 +912,7 @@ if (window.innerWidth>=1200) { //DESKTOP
 
 
 if (window.innerWidth<1200) { //TABLET + MOBILE
+    serviceIndexHeightSet ();
     DiscoMobTouch ();
     StickyPosMob ();
     lastWordsPaddingSet ();

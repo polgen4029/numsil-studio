@@ -2,6 +2,19 @@ document.addEventListener("DOMContentLoaded", function() {
   document.body.classList.add("loaded");
 });
 
+  // 드래그 방지
+  document.addEventListener('dragstart', function (e) {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
+  });
+  //이미지 선택 방지
+    document.addEventListener('contextmenu', function (e) {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
+  });
+
 
 const fixViewportHeight = () => {
     const vh = window.innerHeight * 0.01;

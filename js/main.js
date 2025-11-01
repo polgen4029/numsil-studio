@@ -394,7 +394,7 @@ function thoughtOnClick () {
     const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
     
 
-    if(window.innerWidth>=1700){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`} //DESKTOP
+    if(window.innerWidth>=1200){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`} //DESKTOP
 
 
 
@@ -425,7 +425,7 @@ function serviceOnClick () {
     const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
 
 
-    if(window.innerWidth>=1700){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`} //DESKTOP
+    if(window.innerWidth>=1200){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`} //DESKTOP
 
 
     else if(window.innerWidth<1200){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+16*(fixedVh)}px`} //TABLET + MOBILE
@@ -534,8 +534,18 @@ function titleScrollTop () {
     
 
 }
+//초기 높이 불러오기
+{
+const placeContent = document.querySelector(".placecontent");
+
+var initialHeight = placeContent.offsetHeight;
+console.log(initialHeight)
+}
+
 
 //기본 상태에서 Gearlist 클릭시 요소 실행 (DESKTOP)
+
+
 
 function ClickHeightSet ()
     {
@@ -547,8 +557,8 @@ function ClickHeightSet ()
 
     const gearlistHeight = gearlist.offsetHeight;
 
-    if(window.innerWidth>=1700){placeSize.style.height = `${0.8*window.innerHeight + gearlistHeight + 100}px`} //DESKTOP
-    else if(window.innerWidth<1200){placeSize.style.height = `${fixedVh * 100 + gearlistHeight + 100}px`}  //TABLET + PHONE
+    if(window.innerWidth>=1200){placeSize.style.height = `${0.8*window.innerHeight + gearlistHeight + 100}px`} //DESKTOP
+    else if(window.innerWidth<1200){placeSize.style.height = `${initialHeight + gearlistHeight + 100}px`}  //TABLET + PHONE
 
 
     }
@@ -562,8 +572,9 @@ function ClickHeightReset ()
     const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
 
     const gearlistHeight = gearlist.offsetHeight;
-    if(window.innerWidth>=1700){placeSize.style.height = `${0.8*window.innerHeight}px`} //DESKTOP
-    else if(window.innerWidth<1200){placeSize.style.height = `${fixedVh * 100}px`} //TABLET + PHONE
+    if(window.innerWidth>=1200){placeSize.style.height = `${0.8*window.innerHeight}px`} //DESKTOP
+    else if(window.innerWidth<1200){placeSize.style.height = `${initialHeight}px`} //TABLET + PHONE
+    console.log(initialHeight)
 
     }
 
@@ -779,9 +790,9 @@ function ClickRateHeightSet ()
 
     const gearlistHeight = gearlist.offsetHeight;
 
-    if(window.innerWidth>=1700){placeSize.style.height = `${0.8*window.innerHeight + gearlistHeight + 100}px`} //DESKTOP
+    if(window.innerWidth>=1200){placeSize.style.height = `${0.8*window.innerHeight + gearlistHeight + 100}px`} //DESKTOP
 
-    else if(window.innerWidth<1200){placeSize.style.height = `${fixedVh * 100 + gearlistHeight + 100}px`} //TABLET + MOBILE
+    else if(window.innerWidth<1200){placeSize.style.height = `${initialHeight + gearlistHeight + 100}px`} //TABLET + MOBILE
     }
 
 function ClickRateHeightReset ()
@@ -792,9 +803,9 @@ function ClickRateHeightReset ()
     const rootStyle = getComputedStyle(document.documentElement);
     const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
 
-    if(window.innerWidth>=1700){placeSize.style.height = `${0.8*window.innerHeight}px`} //DESKTOP
+    if(window.innerWidth>=1200){placeSize.style.height = `${0.8*window.innerHeight}px`} //DESKTOP
 
-    else if(window.innerWidth<1200){placeSize.style.height = `${fixedVh * 100}px`} //TABLET + MOBILE
+    else if(window.innerWidth<1200){placeSize.style.height = `${initialHeight}px`} //TABLET + MOBILE
     }
 
 
@@ -843,6 +854,13 @@ function WorkWidthSet () {
 
 
 }
+function PlaceWidthSet () {
+    const workText = document.querySelector(".vibe");
+    const workArticle = document.querySelector(".placemainarticle")
+    workTextWidth = workText.offsetWidth;
+
+    workArticle.style.width = `${workTextWidth}px`
+}
 
 //모바일 앨범아트 터치
 function DiscoMobTouch () {
@@ -864,7 +882,7 @@ function DiscoMobTouch () {
 
 //속성 설정용 (높이 너비 등)
 
-if (window.innerWidth>=1700) { //DESKTOP
+if (window.innerWidth>=1200) { //DESKTOP
     StickyPosDesc ();
     mainArticleWidthSet();
     lastWordsPaddingSet ();
@@ -880,11 +898,16 @@ if (window.innerWidth>=1700) { //DESKTOP
 
     })
 }
+
+
+
+
 if (window.innerWidth<1200) { //TABLET + MOBILE
     DiscoMobTouch ();
     StickyPosMob ();
     lastWordsPaddingSet ();
     WorkWidthSet ();
+    PlaceWidthSet ();
  } 
 
 

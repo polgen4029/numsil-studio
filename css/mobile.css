@@ -1840,18 +1840,18 @@ th, td {
 
 .disc-description strong {
     font-size: 0.7rem;
-    padding: 0 5px 0 5px;
+    padding: 10px 5px 0 5px;
 }
 
 .disc-description small {
-    font-size: 10pt;
+    font-size: 3pt;
     margin-top: 0.8rem;
-    padding: 0 5px 0 5px;
+    padding: 0 5px 10px 5px;
 }
 .disc-description p {
     margin: 0;
     margin-top: 0.3rem;
-    font-size: 9pt;
+    font-size: 4pt;
     padding: 0 5px 0 5px;
 
 }

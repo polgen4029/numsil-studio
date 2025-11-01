@@ -14,6 +14,12 @@ document.addEventListener("DOMContentLoaded", function() {
       e.preventDefault();
     }
   });
+  //모바일 이미지 꾹 누르기 방지
+    document.addEventListener('touchstart', function(e) {
+    if (e.target.tagName === 'IMG') {
+    e.preventDefault(); // 모바일에서 꾹 누르기 시 반응 방지
+    }
+  });
 
 
 const fixViewportHeight = () => {

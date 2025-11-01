@@ -1310,6 +1310,8 @@
     background-color: black;
     z-index: 500;
 
+    margin-bottom:-5px ;
+    
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -1321,6 +1323,8 @@
     height: 20vw;
     background-color: #071357;
     z-index: 2000;
+
+    margin-bottom:-5px ;
 
     display: flex;
     flex-direction: column;

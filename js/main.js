@@ -15,6 +15,7 @@ const fixViewportHeight = () => {
     window.addEventListener('orientationchange', fixViewportHeight);
 
 
+//타이틀 애니메이션
 {
     //타이틀 애니메이션
     const titleAni = document.querySelectorAll('.char');
@@ -27,7 +28,7 @@ const fixViewportHeight = () => {
 });
 }
 
-
+// NUSIL -> STUDIO 애니메이션
 function ScrollAniContent () {
 
     const currentScrollY = window.pageYOffset;
@@ -68,7 +69,7 @@ function ScrollAniContent () {
     }
 }
 
-
+//인트로 Sticky 요소 그라데이션
 {
         const stickyStart = document.querySelector(".lastwords-container");
         const lastWords = document.querySelector('.lastwords');
@@ -116,7 +117,6 @@ function ScrollAniContent () {
 }
 
 //Sticky 요소 정렬
-
 
 function lastWordsPaddingSet ()
         {
@@ -240,11 +240,6 @@ function StickyPosDesc ()
     UnderLayout.style.top = `${stickyButton.offsetHeight}px`
     serviceLayout.style.top = `${stickyButton.offsetHeight}px`
 }
-
-
-
- 
-
 function StickyPosMob () {
 
     const stickyCover = document.querySelector(".stickycover");
@@ -277,7 +272,7 @@ function delay(ms) {
 
 
 
-
+//ABOUT, SERVICE 메뉴동작
 {
     const thoughtClick = document.getElementById("thoughtclick");
     const serviceClick = document.getElementById("serviceclick");
@@ -455,7 +450,7 @@ function serviceOnClickReset () {
 
 
 
-
+//뒷배경 스크롤 블러
 function titleScrollOpacity () {
     const titleView = document.querySelector(".title")
     const currentScrollY = window.pageYOffset
@@ -464,7 +459,7 @@ function titleScrollOpacity () {
     titleView.style.filter = (`blur(${(currentScrollY/currentWindowHeight)*30}px)`)
 
 }
-
+//뒵배경 스크롤 올라가기
 function titleScrollTop () {
     const titleView = document.querySelector(".title")
     const currentScrollY = window.pageYOffset
@@ -620,14 +615,14 @@ function ClickPositionReset ()
 
 
 
-//메뉴 opacity 조정
+//메뉴 투명도 조정 - GEARLIST
 function ClickMenuOpacitySet ()
     {
     const gearlist = document.querySelector(".gearlistmenu");
     gearlist.classList.add("visible");
     }
 
-    function ClickMenuOpacityReset ()
+function ClickMenuOpacityReset ()
     {
     const gearlist = document.querySelector(".gearlistmenu");
     gearlist.classList.remove("visible");
@@ -635,7 +630,7 @@ function ClickMenuOpacitySet ()
 
 
 
-//무상태에서 메뉴 내려오는 상황
+//메뉴 클릭, 터치시 동작 GEARLIST, RATE
  {
     const gearlistClick = document.getElementById("gearlistclick");
     const ratelistClick = document.getElementById("ratelistclick");
@@ -772,7 +767,7 @@ function ClickMenuOpacitySet ()
 
     
 
-//placecontent 높이 늘리기
+//높이 늘리기 - RATE
 
 function ClickRateHeightSet ()
     {
@@ -824,7 +819,7 @@ function ClickRatePositionReset ()
     mainArticle.style.top = `0px`
 
     }
-
+//소개글 투명도 조절
 
 function ClickRateMenuOpacitySet () 
     {
@@ -832,13 +827,13 @@ function ClickRateMenuOpacitySet ()
     gearlist.classList.add("visible");
     }
 
-    function ClickRateMenuOpacityReset ()
+function ClickRateMenuOpacityReset ()
     {
     const gearlist = document.querySelector(".ratemenu");
     gearlist.classList.remove("visible");
     }
 
-
+//WORK 소개 문구 너비 세팅
 function WorkWidthSet () {
     const workText = document.querySelector(".works");
     const workArticle = document.querySelector(".works-article")
@@ -847,6 +842,22 @@ function WorkWidthSet () {
     workArticle.style.width = `${workTextWidth}px`
 
 
+}
+
+//모바일 앨범아트 터치
+function DiscoMobTouch () {
+    const DiscoGraph = document.querySelectorAll(".img-container");
+
+    
+    DiscoGraph.forEach(element => {
+        element.addEventListener("click", ()=>{
+
+                element.classList.toggle("dim")
+                console.log("SEX")
+            }
+        )
+        
+    });
 }
 
 
@@ -870,6 +881,7 @@ if (window.innerWidth>=1700) { //DESKTOP
     })
 }
 if (window.innerWidth<1200) { //TABLET + MOBILE
+    DiscoMobTouch ();
     StickyPosMob ();
     lastWordsPaddingSet ();
     WorkWidthSet ();

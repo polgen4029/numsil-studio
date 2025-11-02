@@ -899,7 +899,6 @@ function DiscoMobTouch () {
         element.addEventListener("click", ()=>{
 
                 element.classList.toggle("dim")
-                console.log("SEX")
             }
         )
         

@@ -511,7 +511,7 @@ function titleScrollTop () {
         ScrollAniContent();
         
         if(currentScrollY<currentWindowHeight){
-        titleScrollOpacity();
+        //titleScrollOpacity();
         titleScrollTop ();
         }
 

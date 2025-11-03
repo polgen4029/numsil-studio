@@ -35,8 +35,8 @@ const fixViewportHeight = () => {
 
 
 //타이틀 애니메이션
-{
-    //타이틀 애니메이션
+/* {
+
     const titleAni = document.querySelectorAll('.char');
     titleAni.forEach(char => {
         char.addEventListener('mouseenter', () => {
@@ -45,7 +45,7 @@ const fixViewportHeight = () => {
     char.classList.add('animate');
     });
 });
-}
+} */
 
 // NUSIL -> STUDIO 애니메이션
 function ScrollAniContent () {

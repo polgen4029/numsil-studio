@@ -35,7 +35,7 @@ const fixViewportHeight = () => {
 
 
 //타이틀 애니메이션
-/* {
+{
 
     const titleAni = document.querySelectorAll('.char');
     titleAni.forEach(char => {
@@ -45,7 +45,7 @@ const fixViewportHeight = () => {
     char.classList.add('animate');
     });
 });
-} */
+}
 
 // NUSIL -> STUDIO 애니메이션
 function ScrollAniContent () {
@@ -484,7 +484,7 @@ function titleScrollOpacity () {
     const currentScrollY = window.pageYOffset
     const currentWindowHeight = window.innerHeight;
 
-    titleView.style.filter = (`blur(${(currentScrollY/currentWindowHeight)*30}px)`)
+    titleView.style.filter = (`blur${(currentScrollY/currentWindowHeight)*30}px)`)
 
 }
 //뒷배경 스크롤 올라가기
@@ -511,7 +511,7 @@ function titleScrollTop () {
         ScrollAniContent();
         
         if(currentScrollY<currentWindowHeight){
-        //titleScrollOpacity();
+        titleScrollOpacity();
         titleScrollTop ();
         }
 

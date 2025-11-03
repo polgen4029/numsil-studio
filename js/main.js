@@ -484,7 +484,7 @@ function titleScrollOpacity () {
     const currentScrollY = window.pageYOffset
     const currentWindowHeight = window.innerHeight;
 
-    titleView.style.filter = (`blur${(currentScrollY/currentWindowHeight)*30}px)`)
+    titleView.style.filter = (`blur(${(currentScrollY/currentWindowHeight)*30}px)`)
 
 }
 //뒷배경 스크롤 올라가기

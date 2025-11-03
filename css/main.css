@@ -55,6 +55,8 @@
         height: 100%;
         object-fit: cover;
 
+        filter:blur(10px);
+
         z-index: 0;
 
         -webkit-user-drag: none; /* 드래그 방지 (크롬/사파리) */
@@ -88,6 +90,12 @@
     }
     .title-background.display {
         z-index: -10;
+    }
+
+    .title-background svg {
+        width:1000px;
+        height: 1000px;
+        background-size: cover;
     }
 
 
@@ -1366,6 +1374,9 @@
     background-color: black;
     z-index: 100;
 
+    margin-top: -2px;
+    margin-bottom:-5px ;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -1377,6 +1388,9 @@
     height: 20vw;
     background-color: #050e61;
     z-index: 2000;
+
+    margin-top: -2px;
+    margin-bottom:-5px ;
 
     display: flex;
     flex-direction: column;

@@ -480,14 +480,14 @@ function serviceIndexHeightSet () {
 
 //뒷배경 스크롤 블러
 function titleScrollOpacity () {
-    const titleView = document.querySelector(".title")
+    const titleView = document.querySelector(".title-background svg")
     const currentScrollY = window.pageYOffset
     const currentWindowHeight = window.innerHeight;
 
     titleView.style.filter = (`blur(${(currentScrollY/currentWindowHeight)*30}px)`)
 
 }
-//뒵배경 스크롤 올라가기
+//뒷배경 스크롤 올라가기
 function titleScrollTop () {
     const titleView = document.querySelector(".title")
     const currentScrollY = window.pageYOffset

@@ -360,7 +360,7 @@ function delay(ms) {
 
     })
 
-    serviceClick.addEventListener("click", () => {
+    serviceClick.addEventListener("click", async() => {
 
         const thoughtPop = document.getElementById("thoughtpop");
         const servicePop = document.getElementById("servicepop");
@@ -383,6 +383,7 @@ function delay(ms) {
         thoughtText.classList.remove("scale");
 
         thoughtOnClickReset();
+        await delay(100);
         serviceOnClick();
 
         isThoughtActive = !isThoughtActive

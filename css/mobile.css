@@ -49,6 +49,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        will-change: top, filter;
     }
 
    .title img {
@@ -58,6 +60,8 @@
         object-fit: cover;
 
         z-index: 0;
+
+        filter:blur(8px);
 
         -webkit-touch-callout: none; /* iOS Safari: 꾹 눌러 메뉴 뜨는 것 방지 */
         -webkit-user-select: none;   /* 드래그/텍스트 선택 방지 */
@@ -90,10 +94,14 @@
     }
 
     .title-background-svgcontainer {
-        width:300px;
-        height:300px;
+        width:250px;
+        height:250px;
         background-image: url(../png/LOGO.png);
         background-size: cover;
+
+        -webkit-touch-callout: none; /* iOS Safari: 꾹 눌러 메뉴 뜨는 것 방지 */
+        -webkit-user-select: none;   /* 드래그/텍스트 선택 방지 */
+        user-select: none;
     }
 
 
@@ -1004,13 +1012,14 @@
 
     will-change: opacity;
 
+    transition-duration: 0.3s;
+
 
 }
 .underphoto-layout.visible {
 
     transform: translateZ(0);
     opacity: 1;
-    transition-duration: 0.3s;
 }
 
 .mainarticle-underphoto-firstfloor {
@@ -1334,7 +1343,7 @@
 .place-underbox{
     width: 100vw;
     height: 20vw;
-    background-color: #071357;
+    background-color: #050e61;
     z-index: 2000;
 
     margin-top: -2px;
@@ -1354,7 +1363,7 @@
 
 .placecontent {
 
-    background-color: #071357;
+    background-color: #050e61;
     width: 100vw;
     /* height: calc(var(--fixed-vh)*100); */
 

@@ -61,8 +61,6 @@
 
         z-index: 0;
 
-        filter:blur(8px);
-
         -webkit-touch-callout: none; /* iOS Safari: 꾹 눌러 메뉴 뜨는 것 방지 */
         -webkit-user-select: none;   /* 드래그/텍스트 선택 방지 */
         user-select: none;

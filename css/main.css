@@ -47,6 +47,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        will-change: top, filter;
     }
 
    .title img {
@@ -81,6 +83,19 @@
 
 
         scale: 0.7;
+
+
+    }
+
+    .title-background-svgcontainer {
+        width:1000px;
+        height:1000px;
+        background-image: url(../png/LOGO.png);
+        background-size: cover;
+
+        -webkit-touch-callout: none; /* iOS Safari: 꾹 눌러 메뉴 뜨는 것 방지 */
+        -webkit-user-select: none;   /* 드래그/텍스트 선택 방지 */
+        user-select: none;
     }
 
     .title-background.fadeout{
@@ -92,11 +107,6 @@
         z-index: -10;
     }
 
-    .title-background svg {
-        width:1000px;
-        height: 1000px;
-        background-size: cover;
-    }
 
 
 
@@ -1040,6 +1050,8 @@
 
     margin-top: 16vh;
     opacity: 0;
+
+    transition-duration: 0.3s;
 
 }
 .underphoto-layout.visible {

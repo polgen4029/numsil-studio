@@ -50,7 +50,6 @@
         align-items: center;
         justify-content: center;
 
-        will-change: top, filter;
     }
 
    .title img {
@@ -911,8 +910,7 @@
     z-index: 100;
     margin: 0;
 
-    transform: translateZ(0);     /* 또는 will-change 사용 */
-    will-change: transform;
+    transform: translateZ(0);
 
 
     display: flex;
@@ -1008,7 +1006,6 @@
     opacity: 0;
     z-index: 1000;
 
-    will-change: opacity;
 
     transition-duration: 0.3s;
 
@@ -1197,7 +1194,6 @@
     justify-content: flex-start;
     align-items: center;
 
-    will-change: opacity;
 }
 
 .underphoto-services.visible{

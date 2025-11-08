@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
   document.body.classList.add("loaded");
 });
 
-  // 드래그 방지
+/*   // 드래그 방지
   document.addEventListener('dragstart', function (e) {
     if (e.target.tagName === 'IMG') {
       e.preventDefault();
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (e.target.tagName === 'IMG') {
       e.preventDefault();
     }
-  });
+  }); */
 
 
 

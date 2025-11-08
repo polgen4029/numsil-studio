@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
   document.body.classList.add("loaded");
 });
 
-/*   // 드래그 방지
+// 드래그 방지
   document.addEventListener('dragstart', function (e) {
     if (e.target.tagName === 'IMG') {
       e.preventDefault();
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (e.target.tagName === 'IMG') {
       e.preventDefault();
     }
-  }); */
+  });
 
 
 
@@ -484,39 +484,41 @@ function titleScrollOpacity () {
 
 }
 //뒷배경 스크롤 올라가기
-function titleScrollTop () {
-    const titleView = document.querySelector(".title")
-    const currentScrollY = window.pageYOffset
-    const currentWindowHeight = window.innerHeight;
+function titleScrollTop() {
+  const titleView = document.querySelector(".title");
 
-    titleView.style.top = -(currentScrollY)*0.3 + 'px'
-    if ((currentScrollY===currentWindowHeight)) {
-        return
-    }
-    
+  const currentScrollY = window.pageYOffset;
+  const currentWindowHeight = window.innerHeight;
+
+  // transform으로 GPU 가속 이동
+  titleView.style.transform = `translateY(${-currentScrollY * 0.3}px)`;
+
+  if (currentScrollY === currentWindowHeight) {
+    return;
+  }
 }
 
 
+{
 
+window.addEventListener("scroll", () => {
+  const currentScrollY = window.pageYOffset;
+  const currentWindowHeight = window.innerHeight;
+  const currentWindowWidth = window.innerWidth;
 
-{ window.addEventListener("scroll" ,() => {
-        const currentScrollY = window.pageYOffset
-        const currentWindowHeight = window.innerHeight;
-        const currentWindowWidth = window.innerWidth;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        ScrollAniContent();
-        
-        if(currentScrollY<currentWindowHeight){
-        titleScrollOpacity();
-        titleScrollTop ();
-        }
-
-        
-
-        
-        
-})}
-
+  ScrollAniContent();
+  
+  if (currentScrollY < currentWindowHeight && !prefersReducedMotion) {
+    titleScrollOpacity();
+    titleScrollTop();
+  } 
+  else if (currentScrollY < currentWindowHeight && prefersReducedMotion) {
+    titleScrollTop();
+  }
+});
+}
 //layoutphoto height 설정
 
     function UnderphotoDescImgResize () {
@@ -615,30 +617,23 @@ function ClickHeightReset ()
 
 
 //소개글 위치 이동
-function ClickPositionSet ()
-    {
-    const mainArticle = document.querySelector(".placemainarticle");
-    const gearlist = document.querySelector(".gearlistmenu");
-
-    const gearlistHeight = gearlist.offsetHeight;
-    mainArticle.style.top = `${gearlistHeight}px`
-
-    }
-
-function ClickPositionReset ()
-    {
-    const mainArticle = document.querySelector(".placemainarticle");
-    const gearlist = document.querySelector(".gearlistmenu");
+function ClickPositionSet() {
+  const mainArticle = document.querySelector(".placemainarticle");
+  const gearlist = document.querySelector(".gearlistmenu");
 
 
-    const gearlistHeight = gearlist.offsetHeight;
+  const gearlistHeight = gearlist.offsetHeight;
 
-   
+  // top 대신 transform으로 이동
+  mainArticle.style.transform = `translateY(${gearlistHeight}px)`;
+}
 
-    mainArticle.style.top = `0px`
-    
-    }
+function ClickPositionReset() {
+  const mainArticle = document.querySelector(".placemainarticle");
 
+  // 원래 위치로 복귀
+  mainArticle.style.transform = `translateY(0px)`;
+}
 
 
 
@@ -836,24 +831,21 @@ function ClickRateHeightReset ()
 
 
 //소개글 위치 이동
-function ClickRatePositionSet ()
-    {
-    const mainArticle = document.querySelector(".placemainarticle");
-    const gearlist = document.querySelector(".ratemenu");
+function ClickRatePositionSet() {
+  const mainArticle = document.querySelector(".placemainarticle");
+  const gearlist = document.querySelector(".ratemenu");
+  const gearlistHeight = gearlist.offsetHeight;
 
-    const gearlistHeight = gearlist.offsetHeight;
-    mainArticle.style.top = `${gearlistHeight}px`
-    }
+  mainArticle.style.transform = `translateY(${gearlistHeight}px)`;
+}
 
-function ClickRatePositionReset ()
-    {
-    const mainArticle = document.querySelector(".placemainarticle");
-    const gearlist = document.querySelector(".ratemenu");
+function ClickRatePositionReset() {
+  const mainArticle = document.querySelector(".placemainarticle");
+
+  mainArticle.style.transform = `translateY(0px)`;
+}
 
 
-    mainArticle.style.top = `0px`
-
-    }
 //소개글 투명도 조절
 
 function ClickRateMenuOpacitySet () 

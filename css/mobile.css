@@ -94,7 +94,7 @@
         width:250px;
         height:250px;
         background-image: url(../png/LOGO.png);
-        background-size: cover;
+        background-size: contain;
 
         -webkit-touch-callout: none; /* iOS Safari: 꾹 눌러 메뉴 뜨는 것 방지 */
         -webkit-user-select: none;   /* 드래그/텍스트 선택 방지 */

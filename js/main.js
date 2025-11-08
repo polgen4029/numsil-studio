@@ -510,11 +510,11 @@ window.addEventListener("scroll", () => {
 
   ScrollAniContent();
   
-  if (currentScrollY < currentWindowHeight && !prefersReducedMotion) {
+  if (currentScrollY < currentWindowHeight && window.innerWidth>=700) {
     titleScrollOpacity();
     titleScrollTop();
   } 
-  else if (currentScrollY < currentWindowHeight && prefersReducedMotion) {
+  else if (currentScrollY < currentWindowHeight && window.innerWidth<700) {
     titleScrollTop();
   }
 });

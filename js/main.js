@@ -515,7 +515,7 @@ window.addEventListener("scroll", () => {
     titleScrollTop();
   } 
   else if (currentScrollY < currentWindowHeight && window.innerWidth<700) {
-    titleScrollTop();
+    //titleScrollTop();
   }
 });
 }

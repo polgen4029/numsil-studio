@@ -81,6 +81,8 @@
 
         opacity:1;
 
+        scale: 0.2;
+
     }
 
     .title-background.fadeout{
@@ -107,7 +109,7 @@
         -webkit-user-select: none;   /* 드래그/텍스트 선택 방지 */
         user-select: none;
     }
-/* 
+ 
 
     .firstfloor {
         display: flex;
@@ -247,7 +249,7 @@
         width: 180.99px;
         height: 104.94px;
     }
-     */
+    
    
 
     .fade-in {

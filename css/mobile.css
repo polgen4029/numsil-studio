@@ -49,8 +49,6 @@
         align-items: center;
         justify-content: center;
 
-        will-change: transform, filter;
-
     }
 
    .title img {
@@ -986,7 +984,10 @@
     background-color: black;
     transition-duration: 1s;
 
+    transform: translateZ(0);
+
     overflow-y: clip;
+    will-change: height, transform;
 }
 
 .sticky-cover-cover{

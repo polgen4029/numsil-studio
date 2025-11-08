@@ -85,57 +85,49 @@ function ScrollAniContent () {
 
 //인트로 Sticky 요소 그라데이션
 {
-  const stickyStart = document.querySelector(".lastwords-container");
-  const lastWords = document.querySelector('.lastwords');
-  let ticking = false;
+        const stickyStart = document.querySelector(".lastwords-container");
+        const lastWords = document.querySelector('.lastwords');
 
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const windowHeight = window.innerHeight;
-        const stickyRect = stickyStart.getBoundingClientRect();
-        const currentScroll = window.pageYOffset;
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const stickyRect = stickyStart.getBoundingClientRect();
+            const currentScroll = window.pageYOffset;
 
-        // 여유 구간(offset)
-        const offsetStart = 0;
-        const offsetEnd = -windowHeight * 1.5;
+            // 여유 구간(offset)
+            const offsetStart = 0;
+            const offsetEnd = -windowHeight*1.5;
 
-        // 색상 변화 시작과 종료 scroll 값
-        const scrollStart = currentScroll + stickyRect.top + offsetStart;
-        const scrollEnd = scrollStart + Math.abs(stickyRect.top - stickyRect.bottom) + offsetEnd;
+            // 색상 변화 시작과 종료 scroll 값
+            const scrollStart = currentScroll + stickyRect.top + offsetStart;
+            const scrollEnd = scrollStart + Math.abs(stickyRect.top-stickyRect.bottom) + offsetEnd;
 
-        // progress 계산 (0 ~ 1 사이로 고정)
-        let progress = (currentScroll - scrollStart) / (scrollEnd - scrollStart);
-        progress = Math.max(0, Math.min(1, progress));
+            // progress 계산
+            let progress = (currentScroll - scrollStart) / (scrollEnd - scrollStart);
+            progress = Math.max(0, Math.min(1, progress)); // 0~1 clamp
 
-        // 배경색: #F3F2EC → #000000
-        const startBg = { r: 243, g: 242, b: 236 };
-        const endBg = { r: 0, g: 0, b: 0 };
-        const currentBg = {
-          r: Math.round(startBg.r + (endBg.r - startBg.r) * progress),
-          g: Math.round(startBg.g + (endBg.g - startBg.g) * progress),
-          b: Math.round(startBg.b + (endBg.b - startBg.b) * progress),
-        };
+            // 배경색: #F3F2EC → #ac2a03
+            const startBg = { r: 243, g: 242, b: 236 };
+            const endBg = { r: 0, g: 0, b: 0 };
+            const currentBg = {
+                r: Math.round(startBg.r + (endBg.r - startBg.r) * progress),
+                g: Math.round(startBg.g + (endBg.g - startBg.g) * progress),
+                b: Math.round(startBg.b + (endBg.b - startBg.b) * progress),
+            };
 
-        // 텍스트 색상: #000000 → #F3F2EC
-        const startText = { r: 0, g: 0, b: 0 };
-        const endText = { r: 243, g: 242, b: 236 };
-        const currentText = {
-          r: Math.round(startText.r + (endText.r - startText.r) * progress),
-          g: Math.round(startText.g + (endText.g - startText.g) * progress),
-          b: Math.round(startText.b + (endText.b - startText.b) * progress),
-        };
+            // 텍스트 색: #000000 → #F3F2EC
+            const startText = { r: 0, g: 0, b: 0 };
+            const endText = { r: 243, g: 242, b: 236 };
+            const currentText = {
+                r: Math.round(startText.r + (endText.r - startText.r) * progress),
+                g: Math.round(startText.g + (endText.g - startText.g) * progress),
+                b: Math.round(startText.b + (endText.b - startText.b) * progress),
+            };
 
-        // 스타일 적용
-        lastWords.style.backgroundColor = `rgb(${currentBg.r}, ${currentBg.g}, ${currentBg.b})`;
-        lastWords.style.color = `rgb(${currentText.r}, ${currentText.g}, ${currentText.b})`;
+            // 적용
+            lastWords.style.backgroundColor = `rgb(${currentBg.r}, ${currentBg.g}, ${currentBg.b})`;
+            lastWords.style.color = `rgb(${currentText.r}, ${currentText.g}, ${currentText.b})`;
+});
 
-        ticking = false; // 다음 스크롤 프레임 준비
-      });
-
-      ticking = true;
-    }
-  });
 }
 
 //Sticky 요소 정렬
@@ -163,9 +155,9 @@ function lastWordsPaddingSet ()
         if (stickyRect.top < 0 && stickyRect.bottom >= 0) {
           lastWords.classList.add("sticky");
         } 
-        else if (stickyRect.top < 0 && stickyRect.bottom < 0) {
+        /* else if (stickyRect.top < 0 && stickyRect.bottom < 0) {
           lastWords.classList.remove("sticky");
-        } 
+        }  */
         else if (stickyRect.top >= 0) {
           lastWords.classList.remove("sticky");
         }

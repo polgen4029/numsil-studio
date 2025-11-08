@@ -291,13 +291,7 @@
     }
 
 
-    @keyframes numsil {
-        0%{transform: translate3d(0,0,0);}
-        47%{transform: translate3d(0,20px,0);
-            fill:#FFF9D0;}
-        90%{transform: translate3d(0,-5px,0);}
-        100%{transform: translate3d(0,0,0);}
-    }
+
     .char.animate {
         animation: numsil;
         animation-duration: 0.45s;
@@ -982,7 +976,10 @@
     position: fixed;
     top:0;
     left:0;
+    
 }
+
+
 .stickywave {
     position:absolute;
 

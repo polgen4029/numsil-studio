@@ -25,12 +25,8 @@
 
         overscroll-behavior-y:contain ;
 
-        user-select: none;       /* 표준 속성 */
-        -webkit-user-select: none; /* 크롬, 사파리 등 WebKit 브라우저용 */
-        -moz-user-select: none;    /* 파이어폭스용 */
-        -ms-user-select: none; 
-
-        -webkit-overflow-scrolling: touch;
+        user-select: none; 
+        
     }
 
     body.loaded {
@@ -61,10 +57,6 @@
         object-fit: cover;
 
         z-index: 0;
-
-        -webkit-touch-callout: none; /* iOS Safari: 꾹 눌러 메뉴 뜨는 것 방지 */
-        -webkit-user-select: none;   /* 드래그/텍스트 선택 방지 */
-        user-select: none;
 
    }
 
@@ -104,10 +96,6 @@
         width:100%;
         height:100%;
         object-fit: contain;
-
-        -webkit-touch-callout: none; /* iOS Safari: 꾹 눌러 메뉴 뜨는 것 방지 */
-        -webkit-user-select: none;   /* 드래그/텍스트 선택 방지 */
-        user-select: none;
     }
  
 
@@ -1163,9 +1151,7 @@
     object-fit: cover;
 
     
-    -webkit-touch-callout: none; /* iOS Safari: 꾹 눌러 메뉴 뜨는 것 방지 */
-    -webkit-user-select: none;   /* 드래그/텍스트 선택 방지 */
-    user-select: none;    
+ 
 }
 
 
@@ -1182,9 +1168,7 @@
     width: 100vw;
     height: calc(var(--fixed-vh) * 30);
     object-fit: cover;
-    -webkit-touch-callout: none; /* iOS Safari: 꾹 눌러 메뉴 뜨는 것 방지 */
-    -webkit-user-select: none;   /* 드래그/텍스트 선택 방지 */
-    user-select: none;  
+     
 }
 
 .underphoto-services {
@@ -1270,9 +1254,7 @@
     object-fit: cover;
 
     display: block;
-    -webkit-touch-callout: none; /* iOS Safari: 꾹 눌러 메뉴 뜨는 것 방지 */
-    -webkit-user-select: none;   /* 드래그/텍스트 선택 방지 */
-    user-select: none;  
+   
 
 }
 
@@ -1840,9 +1822,7 @@ th, td {
 
     transition-duration: 0.3s;
     will-change: opacity;
-    -webkit-touch-callout: none; /* iOS Safari: 꾹 눌러 메뉴 뜨는 것 방지 */
-    -webkit-user-select: none;   /* 드래그/텍스트 선택 방지 */
-    user-select: none;  
+ 
 }
 
 .img-container.dim img{

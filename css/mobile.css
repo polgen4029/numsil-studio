@@ -888,8 +888,8 @@
     align-items: center;
 }
 .lastwords-container{
-    background-color: black;
-    opacity: 1;
+    background-color: #F3F2EC;
+
     position: relative;
     /* border: red 1px solid; */
     display: flex;
@@ -931,6 +931,9 @@
     align-items: center;
 
     will-change: background-color, transform;
+    transition-duration: 0.3ms;
+
+
 }
 
 
@@ -938,11 +941,13 @@
     position: fixed;
     top:0;
     left:0;
+
 }
 
 .lastwords.textcontent {
     height: initial;
     background-color: initial;
+   
 
 }
 
@@ -987,7 +992,7 @@
     align-items: center;
 
     background-color: black;
-    transition-duration: 0.4s;
+    transition-duration: 0.6s;
 
     transform: translateZ(0);
 

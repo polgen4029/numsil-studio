@@ -24,8 +24,6 @@
         justify-content: flex-start;
 
         overscroll-behavior-y:contain ;
-
-        user-select: none; 
         
     }
 

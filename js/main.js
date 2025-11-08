@@ -85,49 +85,57 @@ function ScrollAniContent () {
 
 //인트로 Sticky 요소 그라데이션
 {
-        const stickyStart = document.querySelector(".lastwords-container");
-        const lastWords = document.querySelector('.lastwords');
+  const stickyStart = document.querySelector(".lastwords-container");
+  const lastWords = document.querySelector('.lastwords');
+  let ticking = false;
 
-        window.addEventListener('scroll', () => {
-            const windowHeight = window.innerHeight;
-            const stickyRect = stickyStart.getBoundingClientRect();
-            const currentScroll = window.pageYOffset;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const windowHeight = window.innerHeight;
+        const stickyRect = stickyStart.getBoundingClientRect();
+        const currentScroll = window.pageYOffset;
 
-            // 여유 구간(offset)
-            const offsetStart = 0;
-            const offsetEnd = -windowHeight*1.5;
+        // 여유 구간(offset)
+        const offsetStart = 0;
+        const offsetEnd = -windowHeight * 1.5;
 
-            // 색상 변화 시작과 종료 scroll 값
-            const scrollStart = currentScroll + stickyRect.top + offsetStart;
-            const scrollEnd = scrollStart + Math.abs(stickyRect.top-stickyRect.bottom) + offsetEnd;
+        // 색상 변화 시작과 종료 scroll 값
+        const scrollStart = currentScroll + stickyRect.top + offsetStart;
+        const scrollEnd = scrollStart + Math.abs(stickyRect.top - stickyRect.bottom) + offsetEnd;
 
-            // progress 계산
-            let progress = (currentScroll - scrollStart) / (scrollEnd - scrollStart);
-            progress = Math.max(0, Math.min(1, progress)); // 0~1 clamp
+        // progress 계산 (0 ~ 1 사이로 고정)
+        let progress = (currentScroll - scrollStart) / (scrollEnd - scrollStart);
+        progress = Math.max(0, Math.min(1, progress));
 
-            // 배경색: #F3F2EC → #ac2a03
-            const startBg = { r: 243, g: 242, b: 236 };
-            const endBg = { r: 0, g: 0, b: 0 };
-            const currentBg = {
-                r: Math.round(startBg.r + (endBg.r - startBg.r) * progress),
-                g: Math.round(startBg.g + (endBg.g - startBg.g) * progress),
-                b: Math.round(startBg.b + (endBg.b - startBg.b) * progress),
-            };
+        // 배경색: #F3F2EC → #000000
+        const startBg = { r: 243, g: 242, b: 236 };
+        const endBg = { r: 0, g: 0, b: 0 };
+        const currentBg = {
+          r: Math.round(startBg.r + (endBg.r - startBg.r) * progress),
+          g: Math.round(startBg.g + (endBg.g - startBg.g) * progress),
+          b: Math.round(startBg.b + (endBg.b - startBg.b) * progress),
+        };
 
-            // 텍스트 색: #000000 → #F3F2EC
-            const startText = { r: 0, g: 0, b: 0 };
-            const endText = { r: 243, g: 242, b: 236 };
-            const currentText = {
-                r: Math.round(startText.r + (endText.r - startText.r) * progress),
-                g: Math.round(startText.g + (endText.g - startText.g) * progress),
-                b: Math.round(startText.b + (endText.b - startText.b) * progress),
-            };
+        // 텍스트 색상: #000000 → #F3F2EC
+        const startText = { r: 0, g: 0, b: 0 };
+        const endText = { r: 243, g: 242, b: 236 };
+        const currentText = {
+          r: Math.round(startText.r + (endText.r - startText.r) * progress),
+          g: Math.round(startText.g + (endText.g - startText.g) * progress),
+          b: Math.round(startText.b + (endText.b - startText.b) * progress),
+        };
 
-            // 적용
-            lastWords.style.backgroundColor = `rgb(${currentBg.r}, ${currentBg.g}, ${currentBg.b})`;
-            lastWords.style.color = `rgb(${currentText.r}, ${currentText.g}, ${currentText.b})`;
-});
+        // 스타일 적용
+        lastWords.style.backgroundColor = `rgb(${currentBg.r}, ${currentBg.g}, ${currentBg.b})`;
+        lastWords.style.color = `rgb(${currentText.r}, ${currentText.g}, ${currentText.b})`;
 
+        ticking = false; // 다음 스크롤 프레임 준비
+      });
+
+      ticking = true;
+    }
+  });
 }
 
 //Sticky 요소 정렬
@@ -141,36 +149,34 @@ function lastWordsPaddingSet ()
         }
 //Sticky 효과 주기
 {
-            
+  const stickyStart = document.querySelector(".lastwords-container");
+  const lastWords = document.querySelector(".lastwords");
+  let ticking = false;
 
-            window.addEventListener("scroll", () => {
-                const stickyStart = document.querySelector(".lastwords-container");
-                const lastWords = document.querySelector(".lastwords");
-                const stickyRect = stickyStart.getBoundingClientRect();
+  window.addEventListener("scroll", () => {
 
- 
-            
-                    
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const stickyRect = stickyStart.getBoundingClientRect();
 
+  
+        if (stickyRect.top < 0 && stickyRect.bottom >= 0) {
+          lastWords.classList.add("sticky");
+        } 
+        else if (stickyRect.top < 0 && stickyRect.bottom < 0) {
+          lastWords.classList.remove("sticky");
+        } 
+        else if (stickyRect.top >= 0) {
+          lastWords.classList.remove("sticky");
+        }
 
-                if(stickyRect.top<0 && stickyRect.bottom>=0){
-                    lastWords.classList.add("sticky")
+        ticking = false;
+      });
 
-                }
-
-                
-                else if (stickyRect.top<0 && stickyRect.bottom<0) {
-                    lastWords.classList.remove("sticky")
-                }
-                else if (stickyRect.top>=0) {
-                    lastWords.classList.remove("sticky")
-                }
-                
-                
-            });
-
+      ticking = true; // 현재 프레임 요청 중이라는 표시
+    }
+  });
 }
-
 
 
 
@@ -475,17 +481,30 @@ function serviceIndexHeightSet () {
 
 
 //뒷배경 스크롤 블러
-function titleScrollOpacity () {
-    const titleView = document.querySelector(".title")
+function titleScrollBlur () {
+    const titleView = document.querySelector(".titles")
     const currentScrollY = window.pageYOffset
     const currentWindowHeight = window.innerHeight;
 
     titleView.style.filter = `blur(${(currentScrollY/currentWindowHeight)*30}px)`
 
 }
+
+//뒷배경 모바일
+function titleScrollOpacity () {
+    const titleView = document.querySelector(".titles")
+    const currentScrollY = window.pageYOffset
+    const currentWindowHeight = window.innerHeight;
+
+    titleView.style.opacity = Math.max(0,1-currentScrollY/currentWindowHeight)
+
+}
+
+
+
 //뒷배경 스크롤 올라가기
 function titleScrollTop() {
-  const titleView = document.querySelector(".title");
+  const titleView = document.querySelector(".titles");
 
   const currentScrollY = window.pageYOffset;
   const currentWindowHeight = window.innerHeight;
@@ -498,27 +517,38 @@ function titleScrollTop() {
   }
 }
 
-
 {
+  let ticking = false;
 
-window.addEventListener("scroll", () => {
-  const currentScrollY = window.pageYOffset;
-  const currentWindowHeight = window.innerHeight;
-  const currentWindowWidth = window.innerWidth;
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const currentScrollY = window.pageYOffset;
+        const currentWindowHeight = window.innerHeight;
+        const currentWindowWidth = window.innerWidth;
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // ✅ 스크롤 관련 함수 실행
+        ScrollAniContent();
 
-  ScrollAniContent();
-  
-  if (currentScrollY < currentWindowHeight && window.innerWidth>=700) {
-    titleScrollOpacity();
-    titleScrollTop();
-  } 
-  else if (currentScrollY < currentWindowHeight && window.innerWidth<700) {
-    //titleScrollTop();
-  }
-});
+        // ✅ 데스크톱 (너비 700px 이상)
+        if (currentScrollY < currentWindowHeight && currentWindowWidth >= 700) {
+          titleScrollBlur();
+          titleScrollTop();
+        } 
+        // ✅ 모바일 (너비 700px 미만)
+        else if (currentScrollY < currentWindowHeight && currentWindowWidth < 700) {
+          //titleScrollOpacity ()
+        }
+
+        // 다음 프레임 준비
+        ticking = false;
+      });
+
+      ticking = true;
+    }
+  });
 }
+
 //layoutphoto height 설정
 
     function UnderphotoDescImgResize () {

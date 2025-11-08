@@ -65,6 +65,8 @@
         -webkit-user-select: none; /* 크롬, 사파리 등 WebKit 브라우저용 */
         -moz-user-select: none;    /* 파이어폭스용 */
         -ms-user-select: none;
+
+        -webkit-touch-callout: none
    }
 
     .title-background {
@@ -106,6 +108,8 @@
         -webkit-user-select: none; /* 크롬, 사파리 등 WebKit 브라우저용 */
         -moz-user-select: none;    /* 파이어폭스용 */
         -ms-user-select: none; 
+
+        -webkit-touch-callout: none
     }
  
 
@@ -1165,6 +1169,8 @@
     -moz-user-select: none;    /* 파이어폭스용 */
     -ms-user-select: none; 
 
+    -webkit-touch-callout: none
+
     
  
 }
@@ -1187,6 +1193,8 @@
     -webkit-user-select: none; /* 크롬, 사파리 등 WebKit 브라우저용 */
     -moz-user-select: none;    /* 파이어폭스용 */
     -ms-user-select: none; 
+
+    -webkit-touch-callout: none
      
 }
 
@@ -1278,6 +1286,8 @@
     -webkit-user-select: none; /* 크롬, 사파리 등 WebKit 브라우저용 */
     -moz-user-select: none;    /* 파이어폭스용 */
     -ms-user-select: none; 
+
+    -webkit-touch-callout: none
    
 
 }
@@ -1850,6 +1860,8 @@ th, td {
     -webkit-user-select: none; /* 크롬, 사파리 등 WebKit 브라우저용 */
     -moz-user-select: none;    /* 파이어폭스용 */
     -ms-user-select: none; 
+
+    -webkit-touch-callout: none
  
 }
 

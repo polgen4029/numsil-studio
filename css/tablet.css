@@ -48,7 +48,7 @@
         align-items: center;
         justify-content: center;
 
-        will-change: top, filter;
+        will-change: transform, filter;
     }
 
    .title img {
@@ -63,7 +63,7 @@
         user-select: none;
         -webkit-user-select: none;
         -moz-user-select: none;
-        filter: blur(8px);
+        
 
 
    }
@@ -1052,6 +1052,7 @@
     opacity: 0;
 
     transition-duration: 0.3s;
+    will-change: height;
 
 }
 .underphoto-layout.visible {
@@ -1247,6 +1248,8 @@
 
     margin-top: 16vh;
     margin-bottom: 10vh;
+
+    will-change: height;
 
 }
 
@@ -1504,6 +1507,8 @@
     padding-right:-10px;
 
     min-width:1000px;
+
+    will-change: transform;
 
 }
 .placemainarticle.visible {

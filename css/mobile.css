@@ -23,7 +23,7 @@
         align-items: center;
         justify-content: flex-start;
 
-        overscroll-behavior-y:contain ;
+        overscroll-behavior-y:scroll ;
 
         user-select: none;       /* 표준 속성 */
         -webkit-user-select: none; /* 크롬, 사파리 등 WebKit 브라우저용 */

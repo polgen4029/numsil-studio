@@ -1009,13 +1009,13 @@
 
     transition-duration: 0.5s;
 
-    will-change: tranform;
-    transform: translateZ(0);
+    will-change: tranform, opacity;
+    transform: translateZ(0) translateY(0);
 }
 
 .snsclick.visible{
     opacity: 1;
-    transform: translateZ(0);
+    transform: translateZ(0) translateY(0);
 }
 
 .snsbuttons-container{

@@ -1443,6 +1443,9 @@
 
     z-index: 500;
     transition-duration: 0.5s;
+
+    will-change: tranform;
+    transform: translateZ(0px);
 }
 
 .snsbuttons-container{

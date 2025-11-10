@@ -1054,6 +1054,9 @@
 
     font-weight: 150;
     line-height: 200%;
+
+    transition-duration: 0.5s;
+    opacity: 0;
 }
 .snsbuttons-group{
     width: 100%;
@@ -1063,6 +1066,10 @@
     justify-content: space-around;
     align-items: center;
     margin-bottom: 50px;
+
+    transition-duration: 0.5s;
+
+    opacity: 0;
 }
 
 .snsbuttons{
@@ -1299,6 +1306,10 @@
     align-items: center;
 
     cursor: pointer;
+
+    opacity: 0;
+
+    transition-duration: 0.5s;
 }
 .serviceclick {
     display: flex;
@@ -1307,6 +1318,12 @@
     align-items: center;
 
     cursor: pointer;
+    opacity: 0;
+
+    transition-duration: 0.5s;
+}
+.visible{
+    opacity: 1;
 }
 
 

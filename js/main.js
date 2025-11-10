@@ -135,14 +135,18 @@ function ScrollAniContent () {
 function lastWordsPaddingSet ()
         {
             const stickyArticle = document.querySelector(".lastwords.textcontent");
+            const fakeArticle = document.querySelector(".fakesticky")
             const ArticleHeight = stickyArticle.offsetHeight;
+            
             stickyArticle.style.paddingTop = `${(window.innerHeight/2)-(ArticleHeight/2)}px`
+            fakeArticle.style.paddingTop = `${(window.innerHeight/2)-(ArticleHeight/2)}px`
 
         }
 //Sticky 효과 주기
 {
   const stickyStart = document.querySelector(".lastwords-container");
   const lastWords = document.querySelector(".lastwords");
+  const fakeWords = document.querySelector(".fakesticky")
   let ticking = false;
 
   window.addEventListener("scroll", () => {
@@ -151,15 +155,20 @@ function lastWordsPaddingSet ()
       requestAnimationFrame(() => {
         const stickyRect = stickyStart.getBoundingClientRect();
 
-  
-        if (stickyRect.top < 0 && stickyRect.bottom >= 0) {
+        
+
+
+        
+        if (stickyRect.top < 0) {
           lastWords.classList.add("sticky");
+          fakeWords.classList.add("shadow");
         } 
         /* else if (stickyRect.top < 0 && stickyRect.bottom < 0) {
           lastWords.classList.remove("sticky");
         }  */
         else if (stickyRect.top >= 0) {
           lastWords.classList.remove("sticky");
+          fakeWords.classList.remove("shadow");
         }
 
         ticking = false;
@@ -204,7 +213,7 @@ function lastWordsPaddingSet ()
 //간단 페이드 인만
 {
 {
-    const ScrollFades = document.querySelectorAll(".placecontenttop, .why, .placemainarticle, .works")
+    const ScrollFades = document.querySelectorAll(".placecontenttop, .why, .placemainarticle, .works, .thoughtclick, .serviceclick")
 
 
 
@@ -240,6 +249,7 @@ function StickyPosDesc ()
 {
     const stickyCover = document.querySelector(".stickycover");
     const stickyButton = document.querySelector(".underphoto-layout-button")
+    const SnsBox = document.querySelector(".snsclick")
     const UnderLayout = document.querySelector(".underphoto-layout")
     const MainClick = document.querySelector(".mainclick");
     const NumsilChar = document.querySelector(".invisible")
@@ -248,7 +258,7 @@ function StickyPosDesc ()
     MainClick.style.height =`${NumsilChar.offsetHeight}px`
 
 
-    stickyCover.style.height = `${stickyButton.offsetHeight}px`
+    stickyCover.style.height = `${stickyButton.offsetHeight+SnsBox.offsetHeight}px`
     UnderLayout.style.top = `${stickyButton.offsetHeight}px`
     serviceLayout.style.top = `${stickyButton.offsetHeight}px`
 }
@@ -257,12 +267,13 @@ function StickyPosMob () {
     const stickyCover = document.querySelector(".stickycover");
     const stickyButton = document.querySelector(".underphoto-layout-button")
     const UnderLayout = document.querySelector(".underphoto-layout")
+    const SnsBox = document.querySelector(".snsclick")
     const MainClick = document.querySelector(".mainclick");
     const NumsilChar = document.querySelector(".invisible");
     const serviceLayout = document.querySelector(".underphoto-services");
 
-
-    stickyCover.style.height = `${stickyButton.offsetHeight}px`
+    console.log(SnsBox.offsetHeight);
+    stickyCover.style.height = `${stickyButton.offsetHeight+SnsBox.offsetHeight}px`
     UnderLayout.style.top = `${stickyButton.offsetHeight}px`
     serviceLayout.style.top = `${stickyButton.offsetHeight}px`
 
@@ -274,6 +285,30 @@ function mainArticleWidthSet () {
 
     mainArticle.style.width = `${introTop.offsetWidth}px`
 }
+
+function SnsClickMarginSet() {
+    const ClickMenuWidth = document.querySelector(".mainclick");
+    const LongestMenuWidth =document.querySelector(".servicetext");
+    const SnsMenu = document.querySelector(".snsbuttons-group")
+
+    const ClickMargin = (ClickMenuWidth.offsetWidth - LongestMenuWidth.offsetWidth);
+    SnsMenu.style.paddingRight = `${ClickMargin}px`
+    
+}
+
+ function SnsMapWidthSet() {
+    const TextWidth = document.querySelector(".numsil-thirdfloor");
+    const Map = document.querySelector(".mapimg");
+    const MapDesc = document.querySelector(".mapdescription");
+    const LongestMenuWidth = document.querySelector(".snsbuttons-group");
+    const TotalMenuWidth = document.querySelector(".snsbuttons-container");
+
+    Map.style.width = `${TextWidth.offsetWidth}px`
+    MapDesc.style.width = `${TotalMenuWidth.offsetWidth-LongestMenuWidth.offsetWidth-TextWidth.offsetWidth}px`
+
+}
+
+
 
 
 //delay function
@@ -335,7 +370,7 @@ function delay(ms) {
         servicePop.classList.remove("rotate");
         serviceText.classList.remove("scale");
 
-        serviceOnClickReset();
+        serviceOnClickResetRapid();
         thoughtOnClick();
 
         isServiceActive = !isServiceActive
@@ -375,8 +410,7 @@ function delay(ms) {
         thoughtPop.classList.remove("rotate");
         thoughtText.classList.remove("scale");
 
-        thoughtOnClickReset();
-        await delay(100);
+        thoughtOnClickResetRapid();
         serviceOnClick();
 
         isThoughtActive = !isThoughtActive
@@ -386,7 +420,7 @@ function delay(ms) {
 
         servicePop.classList.remove("rotate");
         serviceText.classList.remove("scale");
-        serviceOnClickReset();
+        await serviceOnClickReset();
         
     }
 
@@ -398,67 +432,127 @@ function delay(ms) {
 }
 
 
-function thoughtOnClick () {
+async function thoughtOnClick () {
     const stickyCover = document.querySelector(".stickycover");
     const stickyButton = document.querySelector(".underphoto-layout-button")
     const UnderLayout = document.querySelector(".underphoto-layout")
+    const SnsBox = document.querySelector(".snsclick");
 
     const rootStyle = getComputedStyle(document.documentElement);
     const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
     
 
-    if(window.innerWidth>=1200){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`} //DESKTOP
+    if(window.innerWidth>=1200){
+        
+        stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+SnsBox.offsetHeight+0.16*window.innerHeight}px`
+        SnsBox.style.transform = `translateY(${UnderLayout.offsetHeight}px)` //DESKTOP
+       }
 
-
-
-    else if(window.innerWidth<1200){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+16*(fixedVh)}px`} //TABLET+MOBILE
+    else if(window.innerWidth<1200){
+        stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+SnsBox.offsetHeight+16*(fixedVh)}px`
+        SnsBox.style.transform = `translateY(${UnderLayout.offsetHeight}px)`
+    } //TABLET+MOBILE
 
     UnderLayout.classList.add("visible");
 }
 
-function thoughtOnClickReset () {
+async function thoughtOnClickReset () {
     const stickyCover = document.querySelector(".stickycover");
     const stickyButton = document.querySelector(".underphoto-layout-button")
     const UnderLayout = document.querySelector(".underphoto-layout")
+    const SnsBox = document.querySelector(".snsclick");
 
 
     UnderLayout.classList.remove("visible");
 
-    stickyCover.style.height = `${stickyButton.offsetHeight}px`
+    SnsBox.style.transform = `translateY(0px)`
+
+    await delay(800)
+
+    stickyCover.style.height = `${stickyButton.offsetHeight+SnsBox.offsetHeight}px`
+    
     
     //stickyCover.style.marginBottom = '0vh'
 }
 
-function serviceOnClick () {
+function thoughtOnClickResetRapid () {
+    const stickyCover = document.querySelector(".stickycover");
+    const stickyButton = document.querySelector(".underphoto-layout-button")
+    const UnderLayout = document.querySelector(".underphoto-layout")
+    const SnsBox = document.querySelector(".snsclick");
+
+
+    UnderLayout.classList.remove("visible");
+
+    SnsBox.style.transform = `translateY(0px)`
+
+    stickyCover.style.height = `${stickyButton.offsetHeight+SnsBox.offsetHeight}px`
+    
+    
+    //stickyCover.style.marginBottom = '0vh'
+}
+
+
+async function serviceOnClick () {
     const stickyCover = document.querySelector(".stickycover");
     const stickyButton = document.querySelector(".underphoto-layout-button")
     const UnderLayout = document.querySelector(".underphoto-services")
+    const SnsBox = document.querySelector(".snsclick");
 
     const rootStyle = getComputedStyle(document.documentElement);
     const fixedVh = parseFloat(rootStyle.getPropertyValue('--fixed-vh'));
 
 
-    if(window.innerWidth>=1200){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+0.16*window.innerHeight}px`} //DESKTOP
+    if(window.innerWidth>=1200){
+        stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+SnsBox.offsetHeight+0.16*window.innerHeight}px`
+        SnsBox.style.transform = `translateY(${UnderLayout.offsetHeight}px)`
+    } //DESKTOP
 
 
-    else if(window.innerWidth<1200){stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+16*(fixedVh)}px`} //TABLET + MOBILE
+    else if(window.innerWidth<1200){
+        stickyCover.style.height = `${stickyButton.offsetHeight+UnderLayout.offsetHeight+SnsBox.offsetHeight+16*(fixedVh)}px`
+        SnsBox.style.transform = `translateY(${UnderLayout.offsetHeight}px)`
+    } //TABLET + MOBILE
 
 
     UnderLayout.classList.add("visible");
 }
 
-function serviceOnClickReset () {
+async function serviceOnClickReset () {
     const stickyCover = document.querySelector(".stickycover");
     const stickyButton = document.querySelector(".underphoto-layout-button")
     const UnderLayout = document.querySelector(".underphoto-services")
+    const SnsBox = document.querySelector(".snsclick");
 
 
-
+    
     UnderLayout.classList.remove("visible");
- 
-    stickyCover.style.height = `${stickyButton.offsetHeight}px`
+    SnsBox.style.transform = `translateY(0px)` 
+    
+    await delay(800)
+    
+    stickyCover.style.height = `${stickyButton.offsetHeight+SnsBox.offsetHeight}px`
+    
     //stickyCover.style.marginBottom = '0vh'
 }
+
+function serviceOnClickResetRapid () {
+    const stickyCover = document.querySelector(".stickycover");
+    const stickyButton = document.querySelector(".underphoto-layout-button")
+    const UnderLayout = document.querySelector(".underphoto-services")
+    const SnsBox = document.querySelector(".snsclick");
+
+
+    
+    UnderLayout.classList.remove("visible");
+    SnsBox.style.transform = `translateY(0px)` 
+   
+    
+    stickyCover.style.height = `${stickyButton.offsetHeight+SnsBox.offsetHeight}px`
+    
+    //stickyCover.style.marginBottom = '0vh'
+}
+
 
 function serviceIndexHeightSet () {
     const ServiceIndexes = document.querySelectorAll(".service-index")
@@ -622,8 +716,6 @@ function ClickHeightReset ()
     const gearlistHeight = gearlist.offsetHeight;
     if(window.innerWidth>=1200){placeSize.style.height = `${0.8*window.innerHeight}px`} //DESKTOP
     else if(window.innerWidth<1200){placeSize.style.height = `${initialHeight}px`} //TABLET + PHONE
-    console.log(initialHeight)
-
     }
 
 
@@ -704,6 +796,7 @@ function ClickMenuOpacityReset ()
        
         ClickPositionSet ();
   
+        await delay(200);
         ClickMenuOpacitySet ();
 
         }
@@ -736,10 +829,12 @@ function ClickMenuOpacityReset ()
         gearlistClick.classList.remove("scale");
         
         ClickMenuOpacityReset ();
-        ClickHeightReset ();
+        await delay(200)
       
     
         ClickPositionReset ();
+        await delay(500);
+        ClickHeightReset ();
         
         }
 
@@ -795,10 +890,10 @@ function ClickMenuOpacityReset ()
         ratelistClick.classList.remove("scale");
 
         ClickRateMenuOpacityReset ();
-
+        await delay(100)
         ClickRatePositionReset ();
 
-   
+        await delay(600)
         ClickRateHeightReset ();
         
     
@@ -925,6 +1020,8 @@ if (window.innerWidth>=1200) { //DESKTOP
     lastWordsPaddingSet ();
     UnderphotoDescImgResize ();
     WorkWidthSet ();
+    SnsClickMarginSet()
+     SnsMapWidthSet()
 
     window.addEventListener("resize", ()=>{
         StickyPosDesc ();
@@ -932,6 +1029,8 @@ if (window.innerWidth>=1200) { //DESKTOP
         lastWordsPaddingSet ();
         UnderphotoDescImgResize ();
         WorkWidthSet ();
+        SnsClickMarginSet()
+        SnsMapWidthSet()
 
     })
 }

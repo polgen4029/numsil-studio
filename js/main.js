@@ -213,7 +213,7 @@ function lastWordsPaddingSet ()
 //간단 페이드 인만
 {
 {
-    const ScrollFades = document.querySelectorAll(".placecontenttop, .why, .placemainarticle, .works, .thoughtclick, .serviceclick")
+    const ScrollFades = document.querySelectorAll(".placecontenttop, .why, .placemainarticle, .works, .thoughtclick, .serviceclick, .snsbuttons-group,.mapdescription-text")
 
 
 

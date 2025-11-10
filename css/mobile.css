@@ -992,8 +992,6 @@
     justify-content: center;
     align-items: center;
 
-    top:0;
-    left:0;
    
     margin:0;
 
@@ -1012,7 +1010,7 @@
     transition-duration: 0.5s;
 
     will-change: tranform;
-    transform: translateX(0px);
+    transform: translateZ(0);
 }
 
 .snsbuttons-container{
@@ -1321,6 +1319,8 @@
     opacity: 0;
 
     transition-duration: 0.5s;
+    transform: translateZ(0);
+    will-change: transform;
 }
 .serviceclick {
     display: flex;
@@ -1332,6 +1332,9 @@
     opacity: 0;
 
     transition-duration: 0.5s;
+
+    transform: translateZ(0);
+    will-change: transform;
 }
 .visible{
     opacity: 1;

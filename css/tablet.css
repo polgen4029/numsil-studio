@@ -979,6 +979,141 @@
     
 }
 
+.fakesticky{
+    position:absolute;
+    top:0;
+    left:0;
+
+
+    background-color: #F3F2EC;
+    width: 100vw;
+    height: 100vh;
+
+    word-break: keep-all;
+
+    font-size: 3rem;
+    line-height: 220%;
+    text-align: center;
+
+    font-weight: 800;
+
+    
+
+
+    
+}
+
+.fakesticky.shadow{
+    
+    opacity: 0;
+
+}
+
+
+.snsclick{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    background-color: black;
+    width: 100vw;
+    height: auto;
+
+    z-index: 500;
+    transition-duration: 0.5s;
+    
+}
+
+.snsbuttons-container{
+
+    width: 60vw;
+
+
+    /* border: 1px red solid; */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    padding-top: 100px;
+
+    min-width: 1000px;
+
+}
+.mapimg{
+    height: 400px;
+    /* border: 1px #F3F2EC solid; */
+}
+
+.snsmap{
+
+    display: flex;
+    flex-direction: row;
+  
+   
+}
+
+
+.mapdescription{
+    
+
+    /* border: 1px #F3F2EC solid; */
+    height: 400px;
+    display: flex;
+
+}
+
+.mapdescription-text{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    font-size: 1.3rem;
+    color: #F3F2EC;
+
+    text-align: left;
+
+    font-weight: 150;
+    line-height: 200%;
+}
+.snsbuttons-group{
+    
+    /* border: 1px green solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.snsbuttons{
+    width: 50px;
+    height: 50px;
+    /*  border: purple 1px solid; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.snsbuttons:nth-of-type(2){
+    margin: 30px 0 20px 0;
+}
+
+
+.snsbuttons svg{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+.snsbuttons img{
+    width: 180%;
+    height: 180%;
+    object-fit: cover;
+
+    filter:grayscale(100%)
+}
+
 
 .stickywave {
     position:absolute;
@@ -1105,7 +1240,7 @@
 }
 
 .underphoto-layout-button{
-    position:absolute;
+
    
 
     display: flex;
@@ -1252,8 +1387,10 @@
     align-items: flex-start;
     align-items: center;
 
-    margin-top: 16vh;
-    margin-bottom: 10vh;
+    padding-top: 16vh;
+    /* margin-bottom: 10vh; */
+
+    transition-duration: 0.4s;
 
     will-change: height;
 
@@ -1307,7 +1444,7 @@
 
 }
 .underphoto-imgcontainer:nth-child(2):nth-child(1){
-    margin-top: 15vw;
+    padding-top: 15vw;
 }
 
 .scrollbutton-container{
@@ -1956,6 +2093,8 @@ p {
     height: auto;
     position: relative;
     background-color:#DCDCDC;
+
+    z-index: 5000;
 }
 
 .footertext{

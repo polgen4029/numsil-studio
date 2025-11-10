@@ -1001,7 +1001,7 @@
     background-color: black;
     width: 100%;
  
-    
+    opacity:0;
 
     padding-top: 50px;
 
@@ -1009,13 +1009,7 @@
 
     transition-duration: 0.5s;
 
-    will-change: tranform, opacity;
-    transform: translateZ(0) translateY(0);
-}
-
-.snsclick.visible{
-    opacity: 1;
-    transform: translateZ(0) translateY(0);
+    
 }
 
 .snsbuttons-container{
@@ -1071,6 +1065,9 @@
 
     transition-duration: 0.5s;
     opacity: 0;
+
+    will-change: tranform;
+    transform: translateZ(0) translateY(0);
 }
 .snsbuttons-group{
     width: 100%;
@@ -1084,6 +1081,9 @@
     transition-duration: 0.5s;
 
     opacity: 0;
+
+    will-change: tranform;
+    transform: translateZ(0) translateY(0);
 }
 
 .snsbuttons{

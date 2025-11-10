@@ -1013,6 +1013,11 @@
     transform: translateZ(0);
 }
 
+.snsclick.visible{
+    opacity: 1;
+    transform: translateZ(0);
+}
+
 .snsbuttons-container{
 
     width: 60vw;

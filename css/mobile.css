@@ -1058,6 +1058,7 @@
     color: #F3F2EC;
 
     text-align: center;
+    word-break: keep-all;
 
     font-weight: 150;
     line-height: 200%;

@@ -182,6 +182,9 @@ function lastWordsPaddingSet ()
 
 
 
+
+
+
 //간단 스크롤시 요소들 페이드인 페이드아웃
 {
     const ScrollFades = document.querySelectorAll(".discocontent, .mainarticle")
@@ -298,7 +301,7 @@ function SnsClickMarginSet() {
 
  function SnsMapWidthSet() {
     const TextWidth = document.querySelector(".numsil-thirdfloor");
-    const Map = document.querySelector(".mapimg");
+    const Map = document.querySelector(".mapdescription-text");
     const MapDesc = document.querySelector(".mapdescription");
     const LongestMenuWidth = document.querySelector(".snsbuttons-group");
     const TotalMenuWidth = document.querySelector(".snsbuttons-container");
@@ -307,6 +310,15 @@ function SnsClickMarginSet() {
     MapDesc.style.width = `${TotalMenuWidth.offsetWidth-LongestMenuWidth.offsetWidth-TextWidth.offsetWidth}px`
 
 }
+
+//snsbuttons 높이 설정
+
+    function SNSHegithSet () {
+        const snsGroup = document.querySelector(".snsbuttons-group");
+        const mapText = document.querySelector(".mapdescription-text");
+
+        snsGroup.style.height = `${mapText.offsetHeight}px`
+    }
 
 
 
@@ -318,119 +330,125 @@ function delay(ms) {
 
 
 
-
-//ABOUT, SERVICE 메뉴동작
+// ABOUT, SERVICE 메뉴동작
 {
     const thoughtClick = document.getElementById("thoughtclick");
     const serviceClick = document.getElementById("serviceclick");
-    const serviceTopButton = document.querySelector(".scrollbutton-container")
+    const serviceTopButton = document.querySelector(".scrollbutton-container");
 
     let isThoughtActive = false;
     let isServiceActive = false;
-    
-    serviceTopButton.addEventListener("click", async ()=>{
+    let isProcessing = false; // 🔒 동시에 실행 방지용 락
+
+    serviceTopButton.addEventListener("click", async () => {
+        if (isProcessing) return;
+        isProcessing = true;
+
         const servicePop = document.getElementById("servicepop");
         const serviceText = document.getElementById("serviceclick");
 
-        servicePop.classList.remove("rotate");
-        serviceText.classList.remove("scale");
+        try {
+            servicePop.classList.remove("rotate");
+            serviceText.classList.remove("scale");
 
-        ScrollPos = document.querySelector(".underphoto-layout-button");
-        const ScrollTop = ScrollPos.getBoundingClientRect().top + window.scrollY
+            const ScrollPos = document.querySelector(".underphoto-layout-button");
+            const ScrollTop = ScrollPos.getBoundingClientRect().top + window.scrollY;
 
-        
-        window.scrollTo({
-            top: ScrollTop,
-            behavior: "smooth"});
-        await delay(1000);
-        serviceOnClickReset();
-        isServiceActive = !isServiceActive
-    })
+            window.scrollTo({
+                top: ScrollTop,
+                behavior: "smooth"
+            });
 
-
-    thoughtClick.addEventListener("click", async ()=>{
-        
-        const thoughtPop = document.getElementById("thoughtpop");
-        const servicePop = document.getElementById("servicepop");
-        const thoughtText = document.getElementById("thoughtclick");
-        const serviceText = document.getElementById("serviceclick");
-
-        if(!isThoughtActive && !isServiceActive){
-        
-        thoughtPop.classList.add("rotate");
-        thoughtText.classList.add("scale");
-        thoughtOnClick();
+            await delay(1000);
+            await serviceOnClickReset();
+            isServiceActive = !isServiceActive;
+        } finally {
+            isProcessing = false;
         }
+    });
 
-        else if(!isThoughtActive && isServiceActive){
 
-        
-        thoughtPop.classList.add("rotate");
-        thoughtText.classList.add("scale");
-        servicePop.classList.remove("rotate");
-        serviceText.classList.remove("scale");
-
-        serviceOnClickResetRapid();
-        thoughtOnClick();
-
-        isServiceActive = !isServiceActive
-        
-        }
-        else if (isThoughtActive) {
-        
-        thoughtPop.classList.remove("rotate");
-        thoughtText.classList.remove("scale")
-        thoughtOnClickReset();
-        
-    }
-
-        isThoughtActive = !isThoughtActive;
-
-    })
-
-    serviceClick.addEventListener("click", async() => {
+    thoughtClick.addEventListener("click", async () => {
+        if (isProcessing) return;
+        isProcessing = true;
 
         const thoughtPop = document.getElementById("thoughtpop");
         const servicePop = document.getElementById("servicepop");
         const thoughtText = document.getElementById("thoughtclick");
         const serviceText = document.getElementById("serviceclick");
 
-        if(!isServiceActive && !isThoughtActive){
-        
-        servicePop.classList.add("rotate");
-        serviceText.classList.add("scale");
-        serviceOnClick();
+        try {
+            if (!isThoughtActive && !isServiceActive) {
+                thoughtPop.classList.add("rotate");
+                thoughtText.classList.add("scale");
+                await thoughtOnClick();
+            }
+
+            else if (!isThoughtActive && isServiceActive) {
+                thoughtPop.classList.add("rotate");
+                thoughtText.classList.add("scale");
+                servicePop.classList.remove("rotate");
+                serviceText.classList.remove("scale");
+
+                await serviceOnClickResetRapid();
+                await thoughtOnClick();
+
+                isServiceActive = !isServiceActive;
+            }
+
+            else if (isThoughtActive) {
+                thoughtPop.classList.remove("rotate");
+                thoughtText.classList.remove("scale");
+                await thoughtOnClickReset();
+            }
+
+            isThoughtActive = !isThoughtActive;
+        } finally {
+            isProcessing = false;
         }
+    });
 
-        else if(!isServiceActive && isThoughtActive){
 
+    serviceClick.addEventListener("click", async () => {
+        if (isProcessing) return;
+        isProcessing = true;
 
-        servicePop.classList.add("rotate");
-        serviceText.classList.add("scale");
-        thoughtPop.classList.remove("rotate");
-        thoughtText.classList.remove("scale");
+        const thoughtPop = document.getElementById("thoughtpop");
+        const servicePop = document.getElementById("servicepop");
+        const thoughtText = document.getElementById("thoughtclick");
+        const serviceText = document.getElementById("serviceclick");
 
-        thoughtOnClickResetRapid();
-        serviceOnClick();
+        try {
+            if (!isServiceActive && !isThoughtActive) {
+                servicePop.classList.add("rotate");
+                serviceText.classList.add("scale");
+                await serviceOnClick();
+            }
 
-        isThoughtActive = !isThoughtActive
-        
+            else if (!isServiceActive && isThoughtActive) {
+                servicePop.classList.add("rotate");
+                serviceText.classList.add("scale");
+                thoughtPop.classList.remove("rotate");
+                thoughtText.classList.remove("scale");
+
+                await thoughtOnClickResetRapid();
+                await serviceOnClick();
+
+                isThoughtActive = !isThoughtActive;
+            }
+
+            else if (isServiceActive) {
+                servicePop.classList.remove("rotate");
+                serviceText.classList.remove("scale");
+                await serviceOnClickReset();
+            }
+
+            isServiceActive = !isServiceActive;
+        } finally {
+            isProcessing = false;
         }
-        else if (isServiceActive) {
-
-        servicePop.classList.remove("rotate");
-        serviceText.classList.remove("scale");
-        await serviceOnClickReset();
-        
-    }
-
-        isServiceActive = !isServiceActive;
-
-    })
-
-
+    });
 }
-
 
 async function thoughtOnClick () {
     const stickyCover = document.querySelector(".stickycover");
@@ -772,141 +790,115 @@ function ClickMenuOpacityReset ()
     gearlist.classList.remove("visible");
     }
 
-
-
-//메뉴 클릭, 터치시 동작 GEARLIST, RATE
- {
+// 메뉴 클릭, 터치시 동작 GEARLIST, RATE
+{
     const gearlistClick = document.getElementById("gearlistclick");
     const ratelistClick = document.getElementById("ratelistclick");
     const gearPop = document.getElementById("gearpop");
     const ratePop = document.getElementById("ratepop");
-    
 
     let isGearActive = false;
     let isRateActive = false;
+    let isProcessing = false; // 🔒 동시에 클릭 방지용 락
 
-    gearlistClick.addEventListener("click", async ()=>{
+    gearlistClick.addEventListener("click", async () => {
+        if (isProcessing) return; // 이미 실행 중이면 클릭 무시
+        isProcessing = true;
 
+        try {
+            if (!isGearActive && !isRateActive) {
+                gearPop.classList.add("rotate");
+                gearlistClick.classList.add("scale");
 
-        if(!isGearActive && !isRateActive) {
-        gearPop.classList.add("rotate");
-        gearlistClick.classList.add("scale");
-        
-        ClickHeightSet ();
-       
-        ClickPositionSet ();
-  
-        await delay(200);
-        ClickMenuOpacitySet ();
+                ClickHeightSet();
+                ClickPositionSet();
+                await delay(200);
+                ClickMenuOpacitySet();
+            }
 
+            else if (!isGearActive && isRateActive) {
+                gearPop.classList.add("rotate");
+                gearlistClick.classList.add("scale");
+                ratePop.classList.remove("rotate");
+                ratelistClick.classList.remove("scale");
+
+                ClickRatePositionReset();
+                ClickPositionSet();
+
+                ClickRateHeightReset();
+                ClickHeightSet();
+
+                ClickRateMenuOpacityReset();
+                ClickMenuOpacitySet();
+
+                isRateActive = !isRateActive;
+            }
+
+            else if (isGearActive) {
+                gearPop.classList.remove("rotate");
+                gearlistClick.classList.remove("scale");
+
+                ClickMenuOpacityReset();
+                await delay(200);
+                ClickPositionReset();
+                await delay(500);
+                ClickHeightReset();
+            }
+
+            isGearActive = !isGearActive;
+        } finally {
+            isProcessing = false; // 작업 종료 후 락 해제
         }
-
-        else if (!isGearActive && isRateActive) 
-        {
-        gearPop.classList.add("rotate");
-        gearlistClick.classList.add("scale");
-        ratePop.classList.remove("rotate");
-        ratelistClick.classList.remove("scale")
-
-        ClickRatePositionReset ();
-        ClickPositionSet ();
-  
-
-        ClickRateHeightReset ();
-        ClickHeightSet ();
-        
-
-        ClickRateMenuOpacityReset ();
-        ClickMenuOpacitySet ();
-       
-        
-        isRateActive = !isRateActive;
-        
-
-        }
-        else if (isGearActive) {
-        gearPop.classList.remove("rotate");
-        gearlistClick.classList.remove("scale");
-        
-        ClickMenuOpacityReset ();
-        await delay(200)
-      
-    
-        ClickPositionReset ();
-        await delay(500);
-        ClickHeightReset ();
-        
-        }
-
-        isGearActive = !isGearActive;
-       
-
     });
 
-    ratelistClick.addEventListener("click", async ()=>{
+    ratelistClick.addEventListener("click", async () => {
+        if (isProcessing) return;
+        isProcessing = true;
 
-        if(!isRateActive && !isGearActive) {
-        
-        ratePop.classList.add("rotate");
-        ratelistClick.classList.add("scale");
+        try {
+            if (!isRateActive && !isGearActive) {
+                ratePop.classList.add("rotate");
+                ratelistClick.classList.add("scale");
 
- 
-        ClickRateHeightSet ();
-        ClickRatePositionSet ();
-        ClickRateMenuOpacitySet ();
-     
+                ClickRateHeightSet();
+                ClickRatePositionSet();
+                ClickRateMenuOpacitySet();
+            }
 
+            else if (!isRateActive && isGearActive) {
+                ratePop.classList.add("rotate");
+                ratelistClick.classList.add("scale");
+                gearPop.classList.remove("rotate");
+                gearlistClick.classList.remove("scale");
+
+                ClickPositionReset();
+                ClickRatePositionSet();
+
+                ClickHeightReset();
+                ClickRateHeightSet();
+
+                ClickMenuOpacityReset();
+                ClickRateMenuOpacitySet();
+
+                isGearActive = !isGearActive;
+            }
+
+            else if (isRateActive) {
+                ratePop.classList.remove("rotate");
+                ratelistClick.classList.remove("scale");
+
+                ClickRateMenuOpacityReset();
+                await delay(100);
+                ClickRatePositionReset();
+                await delay(600);
+                ClickRateHeightReset();
+            }
+
+            isRateActive = !isRateActive;
+        } finally {
+            isProcessing = false; // 락 해제
         }
-
-        else if (!isRateActive && isGearActive) 
-        {
-        ratePop.classList.add("rotate");
-        ratelistClick.classList.add("scale");
-        gearPop.classList.remove("rotate");
-        gearlistClick.classList.remove("scale");
-    
-        ClickPositionReset ();
-        ClickRatePositionSet ();
- 
-
-        ClickHeightReset ();
-        ClickRateHeightSet ();
-        
-
-
-        
-
-        ClickMenuOpacityReset ();
-        ClickRateMenuOpacitySet ();
-       
-        
-        isGearActive = !isGearActive;
-        
-        }
-
-        else if (isRateActive) {
-        
-        ratePop.classList.remove("rotate");
-        ratelistClick.classList.remove("scale");
-
-        ClickRateMenuOpacityReset ();
-        await delay(100)
-        ClickRatePositionReset ();
-
-        await delay(600)
-        ClickRateHeightReset ();
-        
-    
-        
-        
-        }
-
-        isRateActive = !isRateActive;
-       
-
     });
-
-
 }
 
 //초기 상태에서 Rate메뉴를 클릭하는 경우
@@ -1020,8 +1012,9 @@ if (window.innerWidth>=1200) { //DESKTOP
     lastWordsPaddingSet ();
     UnderphotoDescImgResize ();
     WorkWidthSet ();
-    SnsClickMarginSet()
-     SnsMapWidthSet()
+    SnsClickMarginSet();
+    SnsMapWidthSet();
+    SNSHegithSet ();
 
     window.addEventListener("resize", ()=>{
         StickyPosDesc ();
@@ -1031,6 +1024,7 @@ if (window.innerWidth>=1200) { //DESKTOP
         WorkWidthSet ();
         SnsClickMarginSet()
         SnsMapWidthSet()
+        SNSHegithSet ();
 
     })
 }
@@ -1039,6 +1033,7 @@ if (window.innerWidth>=1200) { //DESKTOP
 
 
 if (window.innerWidth<1200) { //TABLET + MOBILE
+
     serviceIndexHeightSet ();
     DiscoMobTouch ();
     StickyPosMob ();

@@ -1243,6 +1243,7 @@
 
 
     margin-bottom: 5px;
+    pointer-events: none;
 
     padding:0;
 }

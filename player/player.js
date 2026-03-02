@@ -107,14 +107,14 @@ let AudioPlay = 0;
     })
 
 function AudioStart () {
-    stopButton.style.backgroundImage = `url("PAUSE.png")`
+    stopButton.style.backgroundImage = `url("PAUSE.svg")`
     playerAudio.play();
     CDImg.style.animationPlayState = "running"
 
 }
 
 function AudioStop () {
-    stopButton.style.backgroundImage = `url("PLAY.png")`
+    stopButton.style.backgroundImage = `url("PLAY.svg")`
     playerAudio.pause();
     CDImg.style.animationPlayState = "paused"
 }
@@ -155,3 +155,4 @@ function AudioStop () {
     })
 
    
+

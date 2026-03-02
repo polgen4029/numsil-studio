@@ -212,6 +212,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    scale:0.8;
 }
 
 .nextbutton {
@@ -414,6 +416,10 @@
     margin-bottom: 10px;
     cursor: pointer;
 }
+.prevLogo{
+    font-style: monospace;
+    font-size: 12pt;
+}
 
 .pausebutton {
     display: flex;
@@ -421,6 +427,13 @@
     align-items: center;
     flex-direction: column;
     cursor: pointer;
+    
+    
+
+}
+.nextLogo{
+    font-style: monospace;
+    font-size: 12pt;
 }
 
 .nextbutton {

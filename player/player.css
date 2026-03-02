@@ -1,0 +1,612 @@
+@charset "UTF-8";
+
+@media (max-width: 1050px) {
+
+    body {
+
+    margin: 0;
+    padding: 0;
+}
+
+.playerBackground{
+
+    color: white;
+    font-size: 15pt;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerBody{
+    width: 100vw;
+    height: 100vh;
+    position:relative;
+
+    margin: 0;
+    padding: 0;
+}
+.playerBlur {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 20%;
+    filter:blur(20px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 0;
+
+}
+
+.playerLayout {
+    position:absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    width: 100%;
+    height: 100%;
+    filter:blur(0);
+    opacity: 100%;
+
+    font-weight: 200;
+
+    
+    z-index: 1;
+
+    overflow: hidden;
+
+    font-size: 12pt;
+}
+
+.rotateCD{
+
+    top:-50vw;
+    left: 0;
+    position:absolute;
+    height: 100vw;
+    width: 100vw;
+    border-radius: 50vw;
+
+    border: solid rgba(204, 200, 200, 0.877) 1.5px;
+    background-size: cover;
+
+    animation: CDrotate linear 20s infinite;
+    animation-play-state: paused;
+    z-index: 1;
+     
+}
+.rotateCDShadow{
+
+    top:-50vw;
+    left: 0;
+    position:absolute;
+    height: 100vw;
+    width: 100vw;
+    border-radius: 50vw;
+    z-index: 0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    
+     
+}
+
+.rotateCDdec {
+    top: -5vw;
+    left: 45vw;
+
+    position: absolute;
+    height: 10vw;
+    width: 10vw;
+    
+    
+    background-color: black;
+
+    border-radius: 10vw;
+    z-index: 2;
+}
+
+.rotateCDdecBlur{
+    top: -5vw;
+    left: 45vw;
+
+    position: absolute;
+    height: 10vw;
+    width: 10vw;
+    
+    
+    background-color: white;
+
+    filter:blur(27px);
+    opacity: 70%;
+
+    border-radius: 10vw;
+    z-index: 3;
+}
+
+@keyframes CDrotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+.songTitle {
+    position: absolute;
+
+    width: 80vw;
+    top: 79vh;
+    left: 10vw;
+
+    font-size: 14pt;
+    font-weight:500;
+
+    text-align: center;
+}
+
+.songCredit {
+    position: absolute;
+
+    font-size: 9pt;
+    text-align: center;
+    width: 80vw;
+    top: 55vw;
+    left: 10vw;
+    line-height: 1.7;
+}
+
+.buttonGroup{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    position: absolute;
+    width: 60vw;
+
+    top:90vh;
+    left: 20vw;
+
+}
+.prevbutton{
+   
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    
+
+}
+
+
+.prevText{
+    margin-right: 10px;
+    font-weight: 400;
+}
+.nextText{
+    margin-left:9px;
+    font-weight: 400;
+}
+.pausebutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.nextbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+}
+
+
+}
+
+@media (min-width: 1050px) and (max-width:1200px) {
+
+    body {
+
+    margin: 0;
+    padding: 0;
+}
+
+.playerBackground{
+
+    color: white;
+    font-size: 15pt;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerBody{
+    width: 100vw;
+    height: 100vh;
+    position:relative;
+
+    margin: 0;
+    padding: 0;
+}
+.playerBlur {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 20%;
+    filter:blur(20px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 0;
+
+}
+
+.playerLayout {
+    position:absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    width: 100%;
+    height: 100%;
+    filter:blur(0);
+    opacity: 100%;
+
+    font-weight: 200;
+
+    
+    z-index: 1;
+
+    overflow: hidden;
+
+    font-size: 12pt;
+}
+
+.rotateCD{
+
+    top:0;
+    left: -50vh;
+    position:absolute;
+    height: 100vh;
+    width: 100vh;
+    border-radius: 50vh;
+
+    border: solid rgba(204, 200, 200, 0.877) 1.5px;
+    background-size: cover;
+
+    animation: CDrotate linear 20s infinite;
+    animation-play-state: paused;
+
+    cursor: pointer;
+}
+
+.rotateCDShadow{
+    top:0;
+    left: -50vh;
+    position:absolute;
+    height: 100vh;
+    width: 100vh;
+    border-radius: 50vh;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+
+}
+
+.rotateCDdec {
+    top: 43vh;
+    left: -7vh;
+
+    position: absolute;
+    height: 14vh;
+    width: 14vh;
+    
+    
+    background-color: black;
+
+    border-radius: 7vh;
+}
+.rotateCDdecBlur{
+    top: 43vh;
+    left: -7vh;
+
+    position: absolute;
+    height: 14vh;
+    width: 14vh;
+    
+    
+    background-color: white;
+
+    filter:blur(80px);
+    opacity: 70%;
+
+    border-radius: 7vh;
+}
+
+@keyframes CDrotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+.songTitle {
+    position: absolute;
+    top: 10vh;
+    left: 50vh;
+
+    font-size: 18pt;
+    font-weight:500;
+}
+
+.songCredit {
+    position: absolute;
+    top: 27vh;
+    left: 70vh;
+
+    font-size: 11pt;
+    line-height: 1.8;
+}
+
+.buttonGroup{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    position: absolute;
+    height: 100vh;
+
+
+    left: 90vw;
+
+}
+.prevbutton{
+   
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding-top: 20vh;
+    cursor: pointer;
+}
+
+.prevText {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.pausebutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.nextbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding-bottom: 20vh;
+    cursor: pointer;
+}
+
+.nextText {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+}
+
+@media (min-width: 1200px){
+body {
+
+    margin: 0;
+    padding: 0;
+}
+
+.playerBackground{
+
+    color: white;
+    font-size: 15pt;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerBody{
+    width: 80vw;
+    height: 80vh;
+    position:relative;
+
+    margin: 0;
+    padding: 0;
+}
+.playerBlur {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 20%;
+    filter:blur(20px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 0;
+
+}
+
+.playerLayout {
+    position:absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    width: 100%;
+    height: 100%;
+    filter:blur(0);
+    opacity: 100%;
+
+    font-weight: 200;
+
+    
+    z-index: 1;
+
+    overflow: hidden;
+
+    font-size: 12pt;
+}
+
+.rotateCD{
+
+    top:0;
+    left: -40vh;
+    position:absolute;
+    height: 80vh;
+    width: 80vh;
+    border-radius: 40vh;
+
+    border: solid rgba(204, 200, 200, 0.877) 1.5px;
+    background-size: cover;
+
+    animation: CDrotate linear 20s infinite;
+    animation-play-state: paused;
+}
+
+.rotateCDdec {
+    top: 34vh;
+    left: -6vh;
+
+    position: absolute;
+    height: 12vh;
+    width: 12vh;
+    
+    
+    background-color: black;
+
+    border-radius: 6vh;
+}
+
+@keyframes CDrotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+.songTitle {
+    position: absolute;
+    top: 5vh;
+    left: 45vh;
+
+    font-size: 18pt;
+    font-weight:500;
+}
+
+.songCredit {
+    position: absolute;
+    top: 15vh;
+    left: 55vh;
+    width: 40vw;
+
+    font-size: 11pt;
+    line-height: 1.8;
+}
+
+.buttonGroup{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    position: absolute;
+    height: 80vh;
+
+
+    left: 70vw;
+
+}
+.prevbutton{
+   
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding-top: 20vh;
+    cursor: pointer;
+}
+
+.prevText {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.pausebutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.nextbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+
+    padding-bottom: 20vh;
+}
+
+.nextText {
+    margin-top: 10px;
+}
+
+
+
+}

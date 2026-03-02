@@ -106,7 +106,9 @@ let AudioPlay = 0;
 
     })
 
+
 function AudioStart () {
+   
     stopButton.style.backgroundImage = `url("PAUSE.svg")`
     playerAudio.play();
     CDImg.style.animationPlayState = "running"
@@ -155,5 +157,3 @@ function AudioStop () {
     })
 
    
-
-

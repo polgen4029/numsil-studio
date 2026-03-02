@@ -9,6 +9,14 @@ const playerText = document.querySelector(".songCredit")
 const CDImg = document.querySelector(".rotateCD")
 const playerAudio = document.getElementById("audioSource");
 
+const fixViewportHeight = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--fixed-vh', `${vh}px`);
+    };
+
+    // 최초 1회만 계산
+fixViewportHeight();
+
 
 const sources = [
     {title : "Modern Kidults - Kunoo (Remastered)"

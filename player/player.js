@@ -21,13 +21,13 @@ fixViewportHeight();
 const sources = [
     {title : "Modern Kidults - Kunoo (Remastered)"
      ,text : "Track Count : 39 Tracks <br><br> Used Mic : <br> Vocal - Octava MK012 <br> Drums - SM57/SennHeizer E Series Kit/Octava MK012 <br> Guitar&Bass - Kemper Profiler <br> <br> Used Gear : <br> Vocal - 1073LB/CL1B/611EQ <br> Bass - 1073LB/1176LN <br> Snare - 1073LB/1176LN/611EQ <br> Drum Bus - G Series Bus Compressor <br> <br> Rec/Tuned/Mixed/Mastered at Studio Numsil"
-     ,img : "../img/engineer.jpeg"
+     ,img : "../img/MK.jpg"
      ,song : "../audio/MK New.mp3"
     }
     ,
     {title : "Someday - 김혜린"
     ,text :"Track Count : 61 Tracks <br><br> Used Mic : <br> Vocal - Neumann TLM103 <br><br> Used Gear : <br> Vocal - 1073LB/CL1B/611EQ <br> Bass - 1073LB/CL1B/1176LN <br> Drum Bus - SSL G Series Bus Compressor <br><br> Rec at Record Factory & Mixed/Mastered at Studio Numsil"
-    ,img : "../img/gears.jpg"
+    ,img : "../img/Someday.jpg"
     ,song : "../audio/Someday Studio.mp3"
     }
 ]
@@ -155,4 +155,5 @@ function AudioStop () {
     })
 
    
+
 

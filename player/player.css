@@ -6,14 +6,21 @@
 
     margin: 0;
     padding: 0;
+
+    font-family: "Roboto",sans-serif;
+    font-optical-sizing: auto;
+
+
 }
+
+
 
 .playerBackground{
 
     color: white;
     font-size: 15pt;
     width: 100vw;
-    height: 100vh;
+    height: calc(var(--fixed-vh) * 100);
     background-color: black;
 
     display: flex;
@@ -24,7 +31,7 @@
 
 .playerBody{
     width: 100vw;
-    height: 100vh;
+    height: calc(var(--fixed-vh) * 100);
     position:relative;
 
     margin: 0;
@@ -145,7 +152,7 @@
     position: absolute;
 
     width: 80vw;
-    top: 79vh;
+    top: calc(var(--fixed-vh) * 79);
     left: 10vw;
 
     font-size: 14pt;
@@ -175,7 +182,7 @@
     position: absolute;
     width: 60vw;
 
-    top:90vh;
+    top:calc(var(--fixed-vh) * 90);
     left: 20vw;
 
 }
@@ -224,6 +231,10 @@
 
     margin: 0;
     padding: 0;
+
+    font-family: "Roboto",sans-serif;
+    font-optical-sizing: auto;
+
 }
 
 .playerBackground{
@@ -434,6 +445,10 @@ body {
 
     margin: 0;
     padding: 0;
+
+    font-family: "Roboto",sans-serif;
+    font-optical-sizing: auto;
+
 }
 
 .playerBackground{
